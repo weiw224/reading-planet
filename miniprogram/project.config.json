@@ -1,0 +1,14 @@
+{
+  "appid": "your-wechat-app-id",
+  "compileType": "miniprogram",
+  "projectname": "reading-planet",
+  "setting": {
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "urlCheck": true,
+    "scopeDataCheck": false
+  },
+  "libVersion": "3.3.0"
+}
