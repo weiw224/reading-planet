@@ -1,0 +1,16 @@
+-r requirements.txt
+
+# 测试
+pytest==7.4.4
+pytest-asyncio==0.23.3
+pytest-cov==4.1.0
+httpx==0.26.0  # 用于测试 FastAPI
+
+# 代码质量
+black==24.1.1
+isort==5.13.2
+flake8==7.0.0
+mypy==1.8.0
+
+# 开发工具
+watchfiles==0.21.0
