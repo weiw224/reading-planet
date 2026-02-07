@@ -3,7 +3,7 @@ import enum
 import pytest
 from datetime import datetime, timezone
 from sqlalchemy import Column, ForeignKey, Integer, String, Text, DateTime
-from sqlalchemy import Enum as SQLEnum
+from sqlalchemy import Enum as SQLEnum, text
 from sqlalchemy import JSON, Boolean, UniqueConstraint, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
@@ -135,6 +135,7 @@ async def test_engine():
     engine = create_async_engine(TEST_DATABASE_URL, echo=False)
     async with engine.begin() as conn:
         await conn.run_sync(TestBase.metadata.create_all)
+        await conn.execute(text("PRAGMA foreign_keys=ON"))
     yield engine
     async with engine.begin() as conn:
         await conn.run_sync(TestBase.metadata.drop_all)
@@ -1051,3 +1052,63 @@ async def test_question_relationships_defined(test_session: AsyncSession):
     assert hasattr(question, "article")
     assert hasattr(question, "abilities")
     assert hasattr(question, "answers")
+
+
+@pytest.mark.asyncio
+async def test_question_cascade_delete_question_abilities(test_session: AsyncSession):
+    article = Article(
+        title="测试文章", content="测试内容", word_count=100, reading_time=1
+    )
+    ability1 = AbilityDimension(name="阅读理解", description="理解文章内容的能力")
+    ability2 = AbilityDimension(name="逻辑推理", description="逻辑推理能力")
+    ability3 = AbilityDimension(name="词汇理解", description="理解词汇的能力")
+
+    test_session.add(article)
+    test_session.add(ability1)
+    test_session.add(ability2)
+    test_session.add(ability3)
+    await test_session.commit()
+    await test_session.refresh(article)
+    await test_session.refresh(ability1)
+    await test_session.refresh(ability2)
+    await test_session.refresh(ability3)
+
+    question = Question(
+        article_id=article.id,
+        type=QuestionTypeEnum.CHOICE,
+        content="测试问题",
+        answer="A",
+    )
+    test_session.add(question)
+    await test_session.commit()
+    await test_session.refresh(question)
+
+    question_ability1 = QuestionAbility(
+        question_id=question.id, ability_id=ability1.id, weight=5
+    )
+    question_ability2 = QuestionAbility(
+        question_id=question.id, ability_id=ability2.id, weight=3
+    )
+    question_ability3 = QuestionAbility(
+        question_id=question.id, ability_id=ability3.id, weight=2
+    )
+
+    test_session.add(question_ability1)
+    test_session.add(question_ability2)
+    test_session.add(question_ability3)
+    await test_session.commit()
+
+    result = await test_session.execute(
+        select(QuestionAbility).where(QuestionAbility.question_id == question.id)
+    )
+    question_abilities_before = result.scalars().all()
+    assert len(question_abilities_before) == 3
+
+    await test_session.delete(question)
+    await test_session.commit()
+
+    result = await test_session.execute(
+        select(QuestionAbility).where(QuestionAbility.question_id == question.id)
+    )
+    question_abilities_after = result.scalars().all()
+    assert len(question_abilities_after) == 0
