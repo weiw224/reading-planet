@@ -29,6 +29,7 @@ class AbilityDimension(Base):
     )
 
     question_abilities = relationship("QuestionAbility", back_populates="ability")
+    # TODO: UserAbility model will be implemented in Task 10
     user_abilities = relationship("UserAbility", back_populates="ability")
 
     def __repr__(self):
