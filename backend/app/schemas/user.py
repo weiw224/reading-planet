@@ -1,7 +1,8 @@
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, field_serializer
 from typing import Optional, List
 from datetime import datetime, date
 from enum import Enum
+from app.models.user import GradeEnum as DBGradeEnum
 
 
 class GradeEnum(str, Enum):
@@ -113,49 +114,24 @@ class UserResponse(UserBase):
     created_at: datetime
     grade: Optional[str] = None
     
-    @field_validator('grade')
+    @field_serializer('grade')
     @classmethod
-    def parse_grade(cls, v):
+    def serialize_grade(cls, v: Optional[str]) -> Optional[str]:
         if v is None:
             return None
-        if isinstance(v, str):
-            if v in ["GRADE_1", "GRADE_2", "GRADE_3", "GRADE_4", "GRADE_5", "GRADE_6"]:
-                return v
-            if v in ["1年级", "2年级", "3年级", "4年级", "5年级", "6年级"]:
-                chinese_map = {
-                    "1年级": "GRADE_1",
-                    "2年级": "GRADE_2",
-                    "3年级": "GRADE_3",
-                    "4年级": "GRADE_4",
-                    "5年级": "GRADE_5",
-                    "6年级": "GRADE_6"
-                }
-                return chinese_map.get(v)
-            if v in ["1", "2", "3", "4", "5", "6"]:
-                int_map = {
-                    "1": "GRADE_1",
-                    "2": "GRADE_2",
-                    "3": "GRADE_3",
-                    "4": "GRADE_4",
-                    "5": "GRADE_5",
-                    "6": "GRADE_6"
-                }
-                return int_map.get(v)
-            return v
-        if isinstance(v, int):
-            int_map = {
-                1: "GRADE_1",
-                2: "GRADE_2",
-                3: "GRADE_3",
-                4: "GRADE_4",
-                5: "GRADE_5",
-                6: "GRADE_6"
-            }
-            return int_map.get(v)
-        return v
+        grade_map = {
+            "1": "GRADE_1",
+            "2": "GRADE_2",
+            "3": "GRADE_3",
+            "4": "GRADE_4",
+            "5": "GRADE_5",
+            "6": "GRADE_6"
+        }
+        return grade_map.get(v, v)
     
     class Config:
         from_attributes = True
+
 
 
 
