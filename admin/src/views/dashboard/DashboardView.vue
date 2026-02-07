@@ -2,8 +2,23 @@
   <div class="dashboard">
     <h2 class="page-title">仪表盘</h2>
     
+    <!-- 错误提示 -->
+    <el-alert
+      v-if="error"
+      type="error"
+      :title="error"
+      :closable="false"
+      show-icon
+      class="error-alert"
+    />
+    
+    <!-- 加载中 -->
+    <el-empty v-if="loading && !error" description="加载中...">
+      <el-icon class="is-loading"><Loading /></el-icon>
+    </el-empty>
+    
     <!-- 统计卡片 -->
-    <el-row :gutter="20" class="stats-row">
+    <el-row v-if="!loading && !error" :gutter="20" class="stats-row">
       <el-col :span="6">
         <div class="stat-card users">
           <div class="stat-icon">
@@ -54,7 +69,7 @@
     </el-row>
     
     <!-- 更多统计 -->
-    <el-row :gutter="20" class="more-stats">
+    <el-row v-if="!loading && !error" :gutter="20" class="more-stats">
       <el-col :span="12">
         <el-card>
           <template #header>
@@ -94,37 +109,74 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { User, Document, Reading, Calendar } from '@element-plus/icons-vue'
-import { getDashboardStats, DashboardStats } from '@/api/dashboard'
+ <script setup lang="ts">
+ import { ref, onMounted } from 'vue'
+ import { ElMessage } from 'element-plus'
+ import { User, Document, Reading, Calendar, Loading } from '@element-plus/icons-vue'
+ import { getDashboardStats, DashboardStats } from '@/api/dashboard'
+ import { useAppStore } from '@/stores/app'
 
-const stats = ref<DashboardStats>({
-  total_users: 0,
-  active_users_today: 0,
-  active_users_week: 0,
-  total_articles: 0,
-  published_articles: 0,
-  total_questions: 0,
-  total_readings: 0,
-  checkins_today: 0,
-})
+ const appStore = useAppStore()
+ const loading = ref(false)
+ const error = ref<string | null>(null)
 
-onMounted(async () => {
-  stats.value = await getDashboardStats()
-})
+ const stats = ref<DashboardStats>({
+   total_users: 0,
+   active_users_today: 0,
+   active_users_week: 0,
+   total_articles: 0,
+   published_articles: 0,
+   total_questions: 0,
+   total_readings: 0,
+   checkins_today: 0,
+ })
+
+ onMounted(async () => {
+   loading.value = true
+   error.value = null
+   appStore.showLoading('加载仪表盘数据...')
+   
+   try {
+     stats.value = await getDashboardStats()
+   } catch (err) {
+     console.error('获取仪表盘数据失败:', err)
+     error.value = '加载仪表盘数据失败，请稍后重试'
+     ElMessage.error('获取仪表盘数据失败')
+   } finally {
+     loading.value = false
+     appStore.hideLoading()
+   }
+ })
 </script>
 
-<style lang="scss" scoped>
-.dashboard {
-  padding: 20px;
-}
+ <style lang="scss" scoped>
+ .dashboard {
+   padding: 20px;
+ }
 
-.page-title {
-  margin-bottom: 24px;
-  font-size: 24px;
-  color: #333;
-}
+ .page-title {
+   margin-bottom: 24px;
+   font-size: 24px;
+   color: #333;
+ }
+
+ .error-alert {
+   margin-bottom: 24px;
+ }
+
+ .el-icon.is-loading {
+   font-size: 48px;
+   animation: rotating 2s linear infinite;
+ }
+
+ @keyframes rotating {
+   from {
+     transform: rotate(0deg);
+   }
+   to {
+     transform: rotate(360deg);
+   }
+ }
 
 .stats-row {
   margin-bottom: 24px;
