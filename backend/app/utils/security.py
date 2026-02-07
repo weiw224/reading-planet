@@ -31,9 +31,13 @@ def verify_token(token: str) -> Optional[dict]:
 
 def get_password_hash(password: str) -> str:
     """密码哈希（用于管理员账号）"""
+    if len(password.encode('utf-8')) > 72:
+        password = password[:72]
     return pwd_context.hash(password)
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """验证密码"""
+    if len(plain_password.encode('utf-8')) > 72:
+        plain_password = plain_password[:72]
     return pwd_context.verify(plain_password, hashed_password)

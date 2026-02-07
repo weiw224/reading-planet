@@ -2,9 +2,10 @@ from typing import Optional
 from fastapi import Depends, Header
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
+from sqlalchemy.exc import SQLAlchemyError
 from app.database import get_db
 from app.utils.security import verify_token
-from app.utils.exceptions import AuthenticationError
+from app.utils.exceptions import AuthenticationError, NotFoundError
 from app.models.user import User
 
 
@@ -29,10 +30,12 @@ async def get_current_user_optional(
     if not user_id:
         return None
     
-    result = await db.execute(select(User).where(User.id == int(user_id)))
-    user = result.scalar_one_or_none()
-    
-    return user
+    try:
+        result = await db.execute(select(User).where(User.id == int(user_id)))
+        user = result.scalar_one_or_none()
+        return user
+    except SQLAlchemyError:
+        return None
 
 
 async def get_current_user(
@@ -47,7 +50,7 @@ async def get_current_user(
 async def get_admin_user(
     authorization: Optional[str] = Header(None),
     db: AsyncSession = Depends(get_db)
-) -> dict:
+) -> User:
     """获取管理员用户（用于后台接口）"""
     if not authorization:
         raise AuthenticationError("请先登录")
@@ -64,4 +67,17 @@ async def get_admin_user(
     if payload.get("role") != "admin":
         raise AuthenticationError("需要管理员权限")
     
-    return payload
+    user_id = payload.get("sub")
+    if not user_id:
+        raise AuthenticationError("Token 中缺少用户信息")
+    
+    try:
+        result = await db.execute(select(User).where(User.id == int(user_id)))
+        user = result.scalar_one_or_none()
+        
+        if not user:
+            raise NotFoundError("管理员用户不存在")
+        
+        return user
+    except SQLAlchemyError as e:
+        raise AuthenticationError("数据库查询失败") from e
