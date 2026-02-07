@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-Hans"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>语音自由表达 (修复按钮布局)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Noto+Sans+SC:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f49d25",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221a10",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans SC", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+    body {
+        min-height: max(884px, 100dvh);
+    }
+</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body>
+<div class="relative flex h-full min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden font-display transition-colors duration-200">
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<button class="text-[#1c160d] dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h2 class="text-[#1c160d] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">语音自由表达</h2>
+</div>
+<div class="flex flex-col gap-2 px-6 pt-2 pb-6">
+<div class="flex gap-6 justify-between items-end">
+<p class="text-[#1c160d] dark:text-gray-300 text-sm font-bold tracking-wide opacity-60">第 3 题 / 共 5 题</p>
+</div>
+<div class="h-3 w-full rounded-full bg-[#e8ddce] dark:bg-white/10 overflow-hidden">
+<div class="h-full rounded-full bg-primary" style="width: 60%;"></div>
+</div>
+</div>
+<div class="flex-1 flex flex-col items-center w-full max-w-md mx-auto px-6 gap-6 justify-center pb-8">
+<div class="relative group">
+<div class="w-32 h-32 @[480px]:w-40 @[480px]:h-40 rounded-full border-4 border-white dark:border-white/10 shadow-xl overflow-hidden bg-blue-100 flex items-center justify-center">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover" data-alt="Happy cartoon fox character nodding" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDW6XaftPQXafLhM7_xnRbhH6-oSovovdwkKZTJvp_Xe9pNPQB-MC6hcoTkNvi4F19ntZxWEk2M0339sw9DHBiFjHzGLzP51b5mcIcxSUrGsiYE--J2nCKcR7rCl71_-b1oncqnMiuottnmAlmoHFOMeZvaP5f0vCE6ekDo-bBw8WMcbTQXFrqMJU72JHZtSqep0LFRDQGnu1kMI3Cc3KXYkonTFSWu9ZDMMZIUmlBOp_GaQnZ7LABpc4juYAoxUyresas_BxYGfCM");'>
+</div>
+</div>
+<div class="absolute -right-2 -top-2 bg-yellow-400 rounded-full p-1 shadow-sm">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1">auto_awesome</span>
+</div>
+</div>
+<div class="relative bg-white dark:bg-[#32281e] p-6 rounded-[2rem] rounded-tl-none shadow-sm border border-[#e8ddce]/30 dark:border-white/5 w-full">
+<div class="absolute -top-3 left-8 w-6 h-6 bg-white dark:bg-[#32281e] transform rotate-45 border-l border-t border-[#e8ddce]/30 dark:border-white/5"></div>
+<h2 class="text-[#1c160d] dark:text-white tracking-tight text-[18px] font-bold leading-tight text-center">
+                你想对故事里的主人公说点什么呢？
+            </h2>
+</div>
+<div class="w-full bg-[#fef5e7] dark:bg-[#3d2e1b] p-5 rounded-2xl border-2 border-primary/20 shadow-sm">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-1">format_quote</span>
+<p class="text-[#4a3a2a] dark:text-[#ede0cf] text-[17px] font-medium leading-relaxed italic">
+                    我觉得小兔子非常勇敢，因为它保护了森林。
+                </p>
+</div>
+</div>
+</div>
+<div class="w-full bg-background-light dark:bg-background-dark p-6 pb-12 flex flex-col items-center gap-6 mt-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1">check_circle</span>
+<p class="text-primary dark:text-primary font-bold text-base tracking-wide">已经帮宝宝记下来啦！</p>
+</div>
+<div class="flex items-center justify-center w-full gap-6">
+<button class="flex flex-col items-center gap-2 group shrink-0">
+<div class="size-14 rounded-full bg-white dark:bg-white/5 border-2 border-[#e8ddce] dark:border-white/10 flex items-center justify-center text-[#1c160d] dark:text-white shadow-sm hover:bg-[#f8f4ef] dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">refresh</span>
+</div>
+<span class="text-xs font-bold text-[#1c160d]/60 dark:text-white/60">重说</span>
+</button>
+<button class="flex-1 max-w-[240px] h-14 rounded-full bg-primary text-white shadow-[0_8px_20px_-6px_rgba(244,157,37,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center">
+<span class="text-[18px] font-bold tracking-wider leading-none">确认发送</span>
+</button>
+</div>
+</div>
+</div>
+
+</body></html>

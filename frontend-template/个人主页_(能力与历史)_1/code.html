@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>个人主页 - 能力与历史</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f49d25",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221a10",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans SC", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">:root {
+    --badge-gradient: linear-gradient(135deg, #fff9f0 0%, #fff1d6 100%);
+    --star-pattern: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 2l1.5 4.5H26l-3.5 3 1.5 4.5-4-3-4 3 1.5-4.5-3.5-3h4.5L20 2z' fill='%23f49d25' fill-opacity='0.1'/%3E%3C/svg%3E")
+    }
+.radar-chart {
+    clip-path: polygon(50% 10%, 90% 35%, 80% 85%, 20% 85%, 10% 35%)
+    }
+.radar-value {
+    clip-path: polygon(50% 25%, 85% 45%, 70% 75%, 35% 80%, 25% 45%)
+    }
+.badge-gloss {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 50%)
+    }
+.star-bg {
+    background-color: #fff;
+    background-image: var(--star-pattern)
+    }
+.dark .star-bg {
+    background-color: #2d2418;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuClpEUVivMK6T9ZaUb7qZiHaLLq_boXA1f6kCmdgGD2bLCTERNYI943rx4PBLNTmEVaconxZKCdbWGAXHaUYvvbzeyxPT_P8MWngAfWAm4xmw0iVJe3RuRdao5RTCGhbxTj0JDUuXwSRAilMDt8F_VTFTfX-qPQXSDLwQCbgkMOXb8chZLsBboSTlU_aRUZREtGM-Qw-3muJt7VF40SN8Tcds_8JDCZJ8zbLYGnrn0fzsMYV-gWsvEBAszyGDgovhxcr5tin188vjI)
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+      font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+    }
+</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#1c160d] dark:text-[#fcfaf8]">
+<div class="relative flex h-auto min-h-screen w-full flex-col max-w-[480px] mx-auto overflow-x-hidden pb-24">
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="text-[#1c160d] dark:text-[#fcfaf8] flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined">settings</span>
+</div>
+<h2 class="text-[#1c160d] dark:text-[#fcfaf8] text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center font-display">个人主页</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 bg-transparent text-[#1c160d] dark:text-[#fcfaf8] gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+<div class="flex p-4 @container">
+<div class="flex w-full flex-col gap-4 items-center bg-white dark:bg-[#2d2418] rounded-xl p-6 shadow-sm">
+<div class="flex gap-4 flex-col items-center">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-24 w-24 border-4 border-primary/20" data-alt="Cute cartoon hero avatar for kids" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCeTLGkFsoDoyQue_hgJjCKfCuCWZFn3-4-YMsC15P03u7-ZApV5X59i94Fxp92maBpFiRcQm4qCs3971-dRQxBudRHFqR9dJrU8b82GPsVkaFoHmLYVIkdwQA7WVFOJah1RZAzCHwWrz8M8QGFfr35reVlQUabgzQIO93nkpsyZwvGezmwIeOp46Q_WuJphUs-595gnqn1r-jeVw9HCMNt3SBByTHbeMUFv2ztx57KoFw5h6yimQ6RDdic02fFNHTerqfFGMEMRKU");'></div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full border-2 border-white dark:border-background-dark">
+                            Lv.12
+                        </div>
+</div>
+<div class="flex flex-col items-center justify-center">
+<p class="text-[#1c160d] dark:text-[#fcfaf8] text-[22px] font-bold leading-tight tracking-[-0.015em] text-center font-display">小书虫阿强</p>
+<p class="text-primary text-sm font-medium leading-normal text-center">称号: 初级小学者</p>
+<div class="mt-2 flex items-center gap-2 bg-primary/10 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-primary text-sm">calendar_today</span>
+<p class="text-primary text-xs font-bold leading-normal text-center">已坚持阅读 45 天</p>
+</div>
+</div>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-background-light dark:bg-[#3d3224] text-[#1c160d] dark:text-[#fcfaf8] text-sm font-bold leading-normal tracking-[0.015em] w-full">
+<span class="truncate">编辑资料</span>
+</button>
+</div>
+</div>
+<div class="px-4 py-2">
+<div class="flex justify-between items-end mb-3">
+<h3 class="text-[#1c160d] dark:text-[#fcfaf8] text-lg font-bold leading-tight tracking-[-0.015em] font-display">我的勋章墙</h3>
+<span class="text-primary text-sm font-medium flex items-center">全部 <span class="material-symbols-outlined text-sm">chevron_right</span></span>
+</div>
+<div class="star-bg bg-gradient-to-b from-orange-50/50 to-white dark:from-orange-950/20 dark:to-[#2d2418] p-6 rounded-2xl shadow-sm border border-orange-100/50 dark:border-orange-900/20">
+<div class="grid grid-cols-3 gap-y-6 gap-x-4">
+<div class="flex flex-col items-center gap-2">
+<div class="relative w-20 h-20 group">
+<div class="absolute inset-0 bg-gradient-to-br from-yellow-300 to-orange-500 rounded-full shadow-lg transform group-active:scale-95 transition-transform"></div>
+<div class="absolute inset-0 badge-gloss rounded-full"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-4xl drop-shadow-md" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+</div>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-[#1c160d] dark:text-[#fcfaf8]">博学多才</p>
+<p class="text-[9px] text-primary font-bold uppercase tracking-wider">已解锁</p>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="relative w-20 h-20 group">
+<div class="absolute inset-0 bg-gradient-to-br from-blue-300 to-blue-600 rounded-full shadow-lg transform group-active:scale-95 transition-transform"></div>
+<div class="absolute inset-0 badge-gloss rounded-full"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-4xl drop-shadow-md" style="font-variation-settings: 'FILL' 1;">emoji_objects</span>
+</div>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-[#1c160d] dark:text-[#fcfaf8]">思考之星</p>
+<p class="text-[9px] text-primary font-bold uppercase tracking-wider">已解锁</p>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="relative w-20 h-20 group">
+<div class="absolute inset-0 bg-gradient-to-br from-purple-300 to-purple-600 rounded-full shadow-lg transform group-active:scale-95 transition-transform"></div>
+<div class="absolute inset-0 badge-gloss rounded-full"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-4xl drop-shadow-md" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-[#1c160d] dark:text-[#fcfaf8]">成就达人</p>
+<p class="text-[9px] text-primary font-bold uppercase tracking-wider">已解锁</p>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="relative w-20 h-20">
+<div class="absolute inset-0 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center opacity-80">
+<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-4xl">military_tech</span>
+</div>
+<div class="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full p-1 shadow-sm border border-gray-100 dark:border-gray-700">
+<span class="material-symbols-outlined text-gray-400 text-xs leading-none">lock</span>
+</div>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-gray-400 dark:text-gray-500">无敌战神</p>
+<p class="text-[9px] text-gray-400 font-medium">Lv.15 解锁</p>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="relative w-20 h-20">
+<div class="absolute inset-0 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center opacity-80">
+<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-4xl">stars</span>
+</div>
+<div class="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full p-1 shadow-sm border border-gray-100 dark:border-gray-700">
+<span class="material-symbols-outlined text-gray-400 text-xs leading-none">lock</span>
+</div>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-gray-400 dark:text-gray-500">满分达人</p>
+<p class="text-[9px] text-gray-400 font-medium">还差3颗星</p>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="relative w-20 h-20">
+<div class="absolute inset-0 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center opacity-80">
+<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-4xl">menu_book</span>
+</div>
+<div class="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full p-1 shadow-sm border border-gray-100 dark:border-gray-700">
+<span class="material-symbols-outlined text-gray-400 text-xs leading-none">lock</span>
+</div>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-gray-400 dark:text-gray-500">阅读狂人</p>
+<p class="text-[9px] text-gray-400 font-medium">连续7天阅读</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-4 py-2">
+<h3 class="text-[#1c160d] dark:text-[#fcfaf8] text-lg font-bold leading-tight tracking-[-0.015em] mb-3 font-display">能力雷达图</h3>
+<div class="bg-white dark:bg-[#2d2418] p-6 rounded-xl shadow-sm flex flex-col items-center">
+<div class="relative w-48 h-48 mb-6">
+<div class="absolute inset-0 border-2 border-primary/10 radar-chart bg-primary/5"></div>
+<div class="absolute inset-0 border border-primary/20 radar-chart scale-75"></div>
+<div class="absolute inset-0 border border-primary/20 radar-chart scale-50"></div>
+<div class="absolute inset-0 bg-primary/40 radar-value"></div>
+<span class="absolute -top-4 left-1/2 -translate-x-1/2 text-[10px] font-bold">细节提取</span>
+<span class="absolute top-1/4 -right-10 text-[10px] font-bold">词语运用</span>
+<span class="absolute bottom-4 -right-2 text-[10px] font-bold">逻辑推理</span>
+<span class="absolute bottom-4 -left-2 text-[10px] font-bold">人物分析</span>
+<span class="absolute top-1/4 -left-10 text-[10px] font-bold">中心思想</span>
+</div>
+<button class="w-full flex cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 bg-primary text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="truncate">去补弱项！</span>
+</button>
+</div>
+</div>
+<div class="px-4 py-2">
+<h3 class="text-[#1c160d] dark:text-[#fcfaf8] text-lg font-bold leading-tight tracking-[-0.015em] mb-3 font-display">最近练习</h3>
+<div class="flex flex-col gap-3">
+<div class="bg-white dark:bg-[#2d2418] p-4 rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] text-[#9c7a49] font-medium font-display">2023-10-24</span>
+<h4 class="text-[#1c160d] dark:text-[#fcfaf8] font-bold text-sm">《小王子的星球之旅》</h4>
+<div class="flex gap-2 mt-1">
+<span class="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded font-bold">95分</span>
+<span class="text-xs text-[#9c7a49]">12分钟</span>
+</div>
+</div>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-primary text-xl">auto_stories</span>
+<span class="material-symbols-outlined text-blue-500 text-xl">emoji_objects</span>
+</div>
+</div>
+<div class="bg-white dark:bg-[#2d2418] p-4 rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] text-[#9c7a49] font-medium font-display">2023-10-22</span>
+<h4 class="text-[#1c160d] dark:text-[#fcfaf8] font-bold text-sm">《春天的发现》</h4>
+<div class="flex gap-2 mt-1">
+<span class="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded font-bold">88分</span>
+<span class="text-xs text-[#9c7a49]">8分钟</span>
+</div>
+</div>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-primary text-xl">auto_stories</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-white dark:bg-[#221a10] border-t border-gray-100 dark:border-gray-800 px-6 py-3 flex justify-between items-center z-20">
+<div class="flex flex-col items-center gap-1 text-[#9c7a49]">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold">首页</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-[#9c7a49]">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="text-[10px] font-bold">练习</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-bold">我的</span>
+</div>
+</div>
+</div>
+
+</body></html>

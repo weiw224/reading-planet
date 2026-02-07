@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>个人主页 - 勋章详情</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f49d25",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221a10",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans SC", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .radar-chart {
+            clip-path: polygon(50% 10%, 90% 35%, 80% 85%, 20% 85%, 10% 35%);
+        }
+        .radar-value {
+            clip-path: polygon(50% 25%, 85% 45%, 70% 75%, 35% 80%, 25% 45%);
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#1c160d] dark:text-[#fcfaf8] relative overflow-hidden">
+<div class="relative flex h-auto min-h-screen w-full flex-col max-w-[480px] mx-auto overflow-x-hidden pb-24 opacity-50 grayscale-[0.3]">
+<div class="flex items-center p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="text-[#1c160d] dark:text-[#fcfaf8] flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined">settings</span>
+</div>
+<h2 class="text-[#1c160d] dark:text-[#fcfaf8] text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center font-display">个人主页</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex items-center justify-center rounded-xl h-12 bg-transparent text-[#1c160d] dark:text-[#fcfaf8] p-0">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+<div class="flex p-4">
+<div class="flex w-full flex-col gap-4 items-center bg-white dark:bg-[#2d2418] rounded-xl p-6 shadow-sm">
+<div class="flex gap-4 flex-col items-center">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-24 w-24 border-4 border-primary/20" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDC3UUMTnsX3WkuCWlldkaRwfXjWM61QsAWaRIibD33Nik3QmnSgQ1PwiJttTjG0ZM0KT9BBYQDbazYeU3r2g82H6cUPY5HTB4lg-75B7lWwkTfdCYlF5sDl6Js5CXr0nNUoKkfbvkowQ70fIYVz-pi_6zPEPUk7gkNQ8Ix9Y1BBUoPGe7dwmNyvzsYQrVibnOizFtVB89grlREgKdJn0Z87oq3WTdVLhru97oT8rIFI7qRotzSH6cbLsjxQqnit4ptTV7xOep3XeY");'></div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full border-2 border-white dark:border-background-dark">Lv.12</div>
+</div>
+<div class="flex flex-col items-center justify-center">
+<p class="text-[#1c160d] dark:text-[#fcfaf8] text-[22px] font-bold leading-tight text-center font-display">小书虫阿强</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-4 py-2">
+<div class="bg-white dark:bg-[#2d2418] p-4 rounded-xl shadow-sm">
+<div class="grid grid-cols-4 gap-4">
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-square bg-orange-100 rounded-full flex items-center justify-center border-2 border-primary"><span class="material-symbols-outlined text-primary text-3xl">auto_stories</span></div></div>
+<div class="flex flex-col items-center gap-1"><div class="w-full aspect-square bg-blue-100 rounded-full flex items-center justify-center border-2 border-blue-400"><span class="material-symbols-outlined text-blue-500 text-3xl">emoji_objects</span></div></div>
+<div class="flex flex-col items-center gap-1 opacity-40"><div class="w-full aspect-square bg-gray-200 rounded-full flex items-center justify-center"><span class="material-symbols-outlined text-gray-500 text-3xl">military_tech</span></div></div>
+<div class="flex flex-col items-center gap-1 opacity-40"><div class="w-full aspect-square bg-gray-200 rounded-full flex items-center justify-center"><span class="material-symbols-outlined text-gray-500 text-3xl">stars</span></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 z-50 flex items-center justify-center px-6">
+<div class="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+<div class="relative w-full max-w-[340px] bg-white dark:bg-[#2d2418] rounded-[2.5rem] p-8 shadow-2xl flex flex-col items-center">
+<button class="absolute top-4 right-4 text-gray-400 dark:text-gray-500">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+<div class="relative mb-8">
+<div class="w-40 h-40 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center border-[6px] border-gray-200 dark:border-gray-700 shadow-inner">
+<span class="material-symbols-outlined text-gray-300 dark:text-gray-600 text-8xl" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<div class="absolute bottom-1 right-1 bg-white dark:bg-[#2d2418] rounded-full p-2 shadow-lg border-4 border-gray-100 dark:border-gray-800">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+</div>
+<div class="text-center mb-10">
+<h3 class="text-xl font-bold text-[#1c160d] dark:text-[#fcfaf8] mb-2 font-display">无敌战神勋章</h3>
+<p class="text-gray-400 dark:text-gray-500 text-sm mb-6 leading-relaxed">这是勇敢者的象征，只有战胜困难的孩子才能获得！</p>
+<div class="bg-orange-50 dark:bg-orange-900/20 px-6 py-4 rounded-2xl border-2 border-orange-100 dark:border-orange-900/40">
+<p class="text-primary font-bold text-sm leading-relaxed">
+                        再答对 <span class="text-2xl mx-0.5">5</span> 道人物分析题<br/>即可解锁
+                    </p>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-[#e08d1f] text-white h-14 rounded-2xl font-bold text-lg shadow-lg shadow-primary/30 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">edit_note</span>
+                去练习
+            </button>
+<button class="mt-4 text-gray-400 dark:text-gray-500 text-sm font-medium">
+                稍后再说
+            </button>
+</div>
+</div>
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-white/80 dark:bg-[#221a10]/80 border-t border-gray-100 dark:border-gray-800 px-6 py-3 flex justify-between items-center z-10 opacity-30">
+<div class="flex flex-col items-center gap-1 text-[#9c7a49]">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold">首页</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-[#9c7a49]">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="text-[10px] font-bold">练习</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-bold">我的</span>
+</div>
+</div>
+
+</body></html>

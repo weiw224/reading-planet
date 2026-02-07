@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>文章阅读界面 (简)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f49d25",
+                        "background-light": "#FFFDF5",
+                        "background-dark": "#221a10",
+                        "text-main": "#2c1810",
+                        "pastel-yellow": "#FEF3C7",
+                        "pastel-orange": "#FFF7ED",
+                        "soft-gray": "#9CA3AF",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Sans SC", "Source Han Sans CN", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "2.5rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(244, 157, 37, 0.1)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-text-main overflow-x-hidden">
+<div class="relative flex flex-col min-h-screen w-full max-w-md mx-auto shadow-2xl bg-background-light dark:bg-background-dark pb-28">
+<header class="sticky top-0 z-50 flex items-center justify-between p-4 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm transition-all">
+<button class="flex items-center justify-center w-12 h-12 rounded-full bg-white dark:bg-white/10 shadow-sm border border-orange-100 dark:border-white/5 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">arrow_back_ios_new</span>
+</button>
+<div class="flex flex-col items-center">
+<span class="text-[10px] font-bold uppercase tracking-wider text-primary/80">科普知识</span>
+<h2 class="text-lg font-bold text-text-main dark:text-white">阅读进行中</h2>
+</div>
+<button class="flex items-center justify-center w-12 h-12 rounded-full bg-white dark:bg-white/10 shadow-sm border border-orange-100 dark:border-white/5 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">more_horiz</span>
+</button>
+</header>
+<main class="flex-1 flex flex-col px-5 pt-2">
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-3">
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-white/10 border border-orange-100 dark:border-white/5 px-4 shadow-sm">
+<p class="text-text-main dark:text-white text-[13px] font-bold">3年级 | 500字 | 建议用时5分 | 难度：★★★ (含挑战题)</p>
+</div>
+</div>
+<div class="mt-2 w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-soft relative group">
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
+<div class="w-full h-full bg-center bg-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQsFEDp-T_30nAy4L2Z4HK5NdPvGga0Ip4VQ89s3JVXsM5s539y86aIrtkWnLM95s_vzZM2YNe404rSko9LefTlKPgAW_eOpMmLIa8OxbB78nYlV5JWYAaZLi-qsOtMiVS5-L3U7JM7b6_mdolXCaj0a5fzw_HsmccMWMI5TDiuTqmUzZ3_tQb_0-bvqvV1J18UKv_egB8GdINGfljAlA5OhBNOUu-ZZwWM1q62yVFZdkYIkptbvqnsrFNK8e8r3oOj8-hRvm1g3M');">
+</div>
+<button class="absolute bottom-3 right-3 z-20 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center shadow-md backdrop-blur-sm">
+<span class="material-symbols-outlined text-gray-600 text-xl">fullscreen</span>
+</button>
+</div>
+<div class="mt-6 mb-2">
+<h1 class="text-[#2c1810] dark:text-white text-[28px] font-extrabold leading-tight tracking-tight">蜜蜂的奇妙世界</h1>
+<div class="flex items-center gap-2 mt-2">
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded-md tracking-wide">生物科学</span>
+<span class="text-gray-400 dark:text-gray-500 text-sm">•</span>
+<span class="text-gray-500 dark:text-gray-400 text-sm font-medium">作者：蜜糖老师</span>
+</div>
+</div>
+<div class="space-y-6 mt-4 pb-8">
+<div class="relative group cursor-pointer active:scale-[0.99] transition-all duration-200">
+<div class="absolute -inset-3 bg-white dark:bg-white/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity shadow-sm border border-orange-100/50 pointer-events-none"></div>
+<div class="relative flex gap-3">
+<span class="material-symbols-outlined text-primary/40 mt-1 shrink-0 select-none group-hover:text-primary transition-colors">touch_app</span>
+<p class="text-[#2c1810] dark:text-gray-200 text-[24px] font-medium leading-[1.7] select-none">
+                        蜜蜂是我们世界上<span class="bg-yellow-100 dark:bg-primary/20 px-1 rounded decoration-wavy underline decoration-primary/30">最重要的</span>昆虫之一。它们通过将花粉从一株植物传送到另一株植物，来帮助花朵生长。
+                    </p>
+</div>
+</div>
+<div class="relative group cursor-pointer active:scale-[0.99] transition-all duration-200">
+<div class="absolute -inset-3 bg-white dark:bg-white/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity shadow-sm border border-orange-100/50 pointer-events-none"></div>
+<div class="relative flex gap-3">
+<span class="material-symbols-outlined text-primary/40 mt-1 shrink-0 select-none group-hover:text-primary transition-colors">touch_app</span>
+<p class="text-[#2c1810] dark:text-gray-200 text-[24px] font-medium leading-[1.7] select-none">
+                        你知道吗？蜜蜂生活在被称为“蜂群”的大集体中。一个蜂群里可以有成千上万只蜜蜂，它们像一个大家庭一样共同工作！
+                    </p>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl p-6 border-l-4 border-primary my-4">
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary text-3xl">lightbulb</span>
+<p class="text-lg font-bold text-primary italic">“蜜蜂有5只眼睛！头部两侧有两只大眼睛，头顶还有三只较小的眼睛。”</p>
+</div>
+</div>
+<div class="relative group cursor-pointer active:scale-[0.99] transition-all duration-200">
+<div class="absolute -inset-3 bg-white dark:bg-white/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity shadow-sm border border-orange-100/50 pointer-events-none"></div>
+<div class="relative flex gap-3">
+<span class="material-symbols-outlined text-primary/40 mt-1 shrink-0 select-none group-hover:text-primary transition-colors">touch_app</span>
+<p class="text-[#2c1810] dark:text-gray-200 text-[24px] font-medium leading-[1.7] select-none">
+                        如果没有蜜蜂，我们就不会有许多喜爱的水果和蔬菜，比如苹果、草莓，甚至是巧克力。我们需要保护它们！
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-40 p-5 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark pt-10">
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-center gap-2 text-sm text-gray-500 font-medium">
+<span class="material-symbols-outlined text-lg">lock_clock</span>
+<span>阅读全文即可解锁答题环节</span>
+</div>
+<div class="w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3 rounded-full"></div>
+</div>
+<button class="w-full h-14 rounded-full bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 font-bold text-xl shadow-none flex items-center justify-center gap-2 cursor-not-allowed transition-all" disabled="">
+<span class="material-symbols-outlined">lock</span>
+                开始答题
+            </button>
+</div>
+</div>
+</div>
+
+</body></html>

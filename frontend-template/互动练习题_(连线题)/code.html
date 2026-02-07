@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f4c025",
+                        "background-light": "#fcfbf8",
+                        "background-dark": "#221e10",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "Noto Sans SC", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                min-height: 100dvh;
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#1c180d] dark:text-[#fcfbf8] min-h-screen flex flex-col overflow-x-hidden">
+<header class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-50">
+<div class="text-[#1c180d] dark:text-[#fcfbf8] flex size-12 shrink-0 items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios</span>
+</div>
+<h2 class="text-[#1c180d] dark:text-[#fcfbf8] text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">互动练习题</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex size-12 cursor-pointer items-center justify-center rounded-full bg-transparent text-[#1c180d] dark:text-[#fcfbf8]">
+<span class="material-symbols-outlined text-2xl">help</span>
+</button>
+</div>
+</header>
+<div class="flex flex-col gap-3 p-4">
+<div class="flex gap-6 justify-between items-center">
+<p class="text-[#1c180d] dark:text-[#fcfbf8] text-sm font-medium leading-normal opacity-70">多词近义词选择</p>
+<span class="bg-primary/20 text-[#1c180d] dark:text-primary px-3 py-1 rounded-full text-xs font-bold">2 / 5</span>
+</div>
+<div class="h-2.5 rounded-full bg-[#e8e2ce] dark:bg-white/10 w-full overflow-hidden">
+<div class="h-full rounded-full bg-primary" style="width: 40%;"></div>
+</div>
+</div>
+<div class="flex flex-col items-center px-6 pt-2 pb-4 gap-4">
+<div class="size-20 bg-primary/10 rounded-full flex items-center justify-center mb-1">
+<div class="size-16 bg-center bg-no-repeat bg-cover rounded-full" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBg5geRbv4ISWVLx_28F0eFYkrmvbD6X7nM5NPUJWeasNI-xo4767VCWWOfU1CDOj8JzxCCubbB3-q0Rmxm3YdQTWhlX36qxOSQHqRQiBlHbzy_UzHdvs1_SYdouebf7QkBcfAtKRrgHB38W1zItEajpyIjbhxExE2YtwrDViPV9r0NE8pL_YZn38DQHUYjs3cDwJR0_N8fpnsVWfR4Mh3YTZC4AxKrvzSDSPC4MsU7Z8YEik7eCxnneIoPSUibehjbSFZfV2rbeyo");'></div>
+</div>
+<h3 class="text-[#1c180d] dark:text-[#fcfbf8] tracking-light text-xl font-bold leading-tight text-center">
+            请为下列词语选择合适的近义词
+        </h3>
+</div>
+<div class="flex-1 px-4 pb-32 flex flex-col gap-6">
+<div class="bg-white dark:bg-white/5 p-4 rounded-2xl shadow-sm border border-[#e8e2ce] dark:border-white/10">
+<div class="flex items-center gap-3 mb-4">
+<div class="px-5 py-2 bg-primary rounded-full text-white font-bold text-lg shadow-sm">开心</div>
+<div class="h-[1px] flex-1 bg-[#e8e2ce] dark:bg-white/10"></div>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="flex-1 min-w-[80px] py-2.5 px-3 rounded-xl border-2 border-primary bg-primary/10 text-primary font-bold text-sm transition-all flex items-center justify-center gap-1">
+                    快乐
+                    <span class="material-symbols-outlined text-sm font-bold">check</span>
+</button>
+<button class="flex-1 min-w-[80px] py-2.5 px-3 rounded-xl border-2 border-[#e8e2ce] bg-white dark:bg-transparent text-[#1c180d] dark:text-[#fcfbf8] font-medium text-sm">
+                    伤心
+                </button>
+<button class="flex-1 min-w-[80px] py-2.5 px-3 rounded-xl border-2 border-[#e8e2ce] bg-white dark:bg-transparent text-[#1c180d] dark:text-[#fcfbf8] font-medium text-sm">
+                    愤怒
+                </button>
+</div>
+</div>
+<div class="bg-white dark:bg-white/5 p-4 rounded-2xl shadow-sm border border-[#e8e2ce] dark:border-white/10">
+<div class="flex items-center gap-3 mb-4">
+<div class="px-5 py-2 bg-primary rounded-full text-white font-bold text-lg shadow-sm">勇敢</div>
+<div class="h-[1px] flex-1 bg-[#e8e2ce] dark:bg-white/10"></div>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="flex-1 min-w-[80px] py-2.5 px-3 rounded-xl border-2 border-[#e8e2ce] bg-white dark:bg-transparent text-[#1c180d] dark:text-[#fcfbf8] font-medium text-sm">
+                    胆小
+                </button>
+<button class="flex-1 min-w-[80px] py-2.5 px-3 rounded-xl border-2 border-[#e8e2ce] bg-white dark:bg-transparent text-[#1c180d] dark:text-[#fcfbf8] font-medium text-sm">
+                    顽皮
+                </button>
+<button class="flex-1 min-w-[80px] py-2.5 px-3 rounded-xl border-2 border-[#e8e2ce] bg-white dark:bg-transparent text-[#1c180d] dark:text-[#fcfbf8] font-medium text-sm">
+                    果敢
+                </button>
+</div>
+</div>
+<div class="bg-white dark:bg-white/5 p-4 rounded-2xl shadow-sm border border-[#e8e2ce] dark:border-white/10">
+<div class="flex items-center gap-3 mb-4">
+<div class="px-5 py-2 bg-primary rounded-full text-white font-bold text-lg shadow-sm">聪明</div>
+<div class="h-[1px] flex-1 bg-[#e8e2ce] dark:bg-white/10"></div>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="flex-1 min-w-[80px] py-2.5 px-3 rounded-xl border-2 border-[#e8e2ce] bg-white dark:bg-transparent text-[#1c180d] dark:text-[#fcfbf8] font-medium text-sm">
+                    笨拙
+                </button>
+<button class="flex-1 min-w-[80px] py-2.5 px-3 rounded-xl border-2 border-[#e8e2ce] bg-white dark:bg-transparent text-[#1c180d] dark:text-[#fcfbf8] font-medium text-sm">
+                    伶俐
+                </button>
+<button class="flex-1 min-w-[80px] py-2.5 px-3 rounded-xl border-2 border-[#e8e2ce] bg-white dark:bg-transparent text-[#1c180d] dark:text-[#fcfbf8] font-medium text-sm">
+                    可爱
+                </button>
+</div>
+</div>
+</div>
+<footer class="fixed bottom-0 left-0 right-0 p-4 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-t border-[#e8e2ce] dark:border-white/10 z-50">
+<div class="max-w-screen-md mx-auto flex items-center justify-between gap-3">
+<button class="flex-1 flex flex-col items-center justify-center gap-1 text-[#1c180d] dark:text-[#fcfbf8] min-w-[80px]">
+<div class="size-10 rounded-full bg-[#e8e2ce] dark:bg-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">lightbulb</span>
+</div>
+<span class="text-[10px] font-bold">温柔提示</span>
+</button>
+<button class="flex-1 text-center py-3 px-4 rounded-full border-2 border-[#e8e2ce] dark:border-white/20 text-sm font-bold">
+                查看原文
+            </button>
+<button class="flex-[1.5] py-3 px-6 rounded-full bg-primary text-[#1c180d] text-base font-bold shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span>确认答案</span>
+<span class="material-symbols-outlined text-xl font-bold">check_circle</span>
+</button>
+</div>
+</footer>
+
+</body></html>

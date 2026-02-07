@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>结算与勋章解锁</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f49d25",
+                        "primary-dark": "#d68310",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221a10",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2d2418",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2rem",
+                        "2xl": "2.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 4px 20px -2px rgba(244, 157, 37, 0.15)",
+                        "card": "0 2px 8px rgba(0, 0, 0, 0.04)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .radar-grid {
+            stroke: #e5e7eb;
+            stroke-width: 1;
+            fill: none;
+        }
+        .dark .radar-grid {
+            stroke: #4b5563;
+        }
+        .radar-area {
+            fill: rgba(244, 157, 37, 0.4);
+            stroke: #f49d25;
+            stroke-width: 2;
+        }
+        .star-pop {
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col items-center">
+<div class="relative w-full max-w-md mx-auto flex flex-col min-h-screen bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden">
+<div class="flex items-center p-4 justify-between z-10">
+<button class="text-gray-800 dark:text-gray-100 flex size-10 shrink-0 items-center justify-center rounded-full bg-white dark:bg-surface-dark shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
+</button>
+<h2 class="text-gray-800 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">完成练习</h2>
+</div>
+<div class="flex-1 flex flex-col items-center w-full px-6 pb-40 overflow-y-auto">
+<h1 class="text-gray-900 dark:text-white text-[32px] font-extrabold leading-tight text-center pt-2 pb-4">太棒了！</h1>
+<div class="flex items-center justify-center gap-4 mb-8">
+<div class="star-pop" style="animation-delay: 0.1s;">
+<span class="material-symbols-outlined text-primary drop-shadow-sm" style="font-variation-settings: 'FILL' 1; font-size: 56px;">star</span>
+</div>
+<div class="star-pop relative -top-4" style="animation-delay: 0.3s;">
+<span class="material-symbols-outlined text-primary drop-shadow-lg" style="font-variation-settings: 'FILL' 1; font-size: 72px;">star</span>
+</div>
+<div class="star-pop" style="animation-delay: 0.2s;">
+<span class="material-symbols-outlined text-primary drop-shadow-sm" style="font-variation-settings: 'FILL' 1; font-size: 56px;">star</span>
+</div>
+</div>
+<div class="w-full flex items-end gap-3 mb-8">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex-shrink-0 overflow-hidden border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="Cute cartoon mascot face" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABs7RUPvYvUG6toYfcJsPXNyV-hcvaZSmZTVfxbEt2QaS-IkLUu6MHvnlmrmIye6uDDKSgAb9DH9kbDwxlWwKy8b5iD6dLYAFBj3FDl_HYRq_iT2KXxcADMeQFzL-bR8FeRdHXODRLUXCJ4gJIoze88s9D8mQ3mhPJBA8oMaB5ahzug742WbNjd8jUqrk0zxtDPpVGux_pKAczlY0XIZw0VPD3tnfdTcEk_NoENfq_fjPIGxt-3Co9S0EB8IV8qnsUjT8VtOnMzQE"/>
+</div>
+<div class="bg-white dark:bg-surface-dark p-4 rounded-2xl rounded-bl-none shadow-card border border-gray-100 dark:border-gray-800 flex-1">
+<p class="text-gray-700 dark:text-gray-200 text-sm font-semibold">今天的小进步好可爱！继续保持哦～</p>
+</div>
+</div>
+<div class="w-full mb-6">
+<div class="bg-gradient-to-br from-[#fff8ee] to-[#fff] dark:from-surface-dark dark:to-background-dark p-1 rounded-2xl shadow-soft">
+<div class="relative flex flex-col items-center justify-center rounded-xl p-5 border-2 border-primary/20 border-dashed">
+<div class="absolute top-3 right-3">
+<span class="material-symbols-outlined text-primary animate-pulse" style="font-size: 24px;">auto_awesome</span>
+</div>
+<div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-primary" style="font-size: 40px; font-variation-settings: 'FILL' 0;">local_police</span>
+</div>
+<p class="text-primary font-bold text-xs tracking-wide uppercase mb-1">解锁新勋章！</p>
+<h3 class="text-gray-900 dark:text-white text-xl font-extrabold mb-1">人物侦探勋章</h3>
+<p class="text-gray-500 dark:text-gray-400 text-xs text-center">在阅读中敏锐观察并分析人物特征</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 w-full mb-8">
+<div class="flex flex-col items-center justify-center gap-1 rounded-2xl p-4 bg-white dark:bg-surface-dark shadow-card">
+<div class="flex items-center gap-1 text-gray-400 dark:text-gray-500 mb-1">
+<span class="material-symbols-outlined" style="font-size: 18px;">schedule</span>
+<span class="text-xs font-bold tracking-wider">用时对比</span>
+</div>
+<p class="text-gray-900 dark:text-white text-2xl font-black">14:20</p>
+</div>
+<div class="flex flex-col items-center justify-center gap-1 rounded-2xl p-4 bg-white dark:bg-surface-dark shadow-card">
+<div class="flex items-center gap-1 text-gray-400 dark:text-gray-500 mb-1">
+<span class="material-symbols-outlined" style="font-size: 18px;">track_changes</span>
+<span class="text-xs font-bold tracking-wider">正确率</span>
+</div>
+<p class="text-gray-900 dark:text-white text-2xl font-black">95%</p>
+</div>
+</div>
+<div class="w-full bg-white dark:bg-surface-dark rounded-3xl p-6 shadow-card mb-4 flex flex-col items-center">
+<h3 class="text-gray-900 dark:text-white font-bold text-base mb-4 w-full text-left">能力分布</h3>
+<div class="relative w-64 h-64 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewBox="0 0 200 200">
+<polygon class="radar-grid" opacity="0.3" points="100,20 176,75 147,165 53,165 24,75"></polygon>
+<polygon class="radar-grid" opacity="0.3" points="100,40 157,81 135,149 65,149 43,81"></polygon>
+<polygon class="radar-grid" opacity="0.3" points="100,60 138,87 123,132 77,132 62,87"></polygon>
+<polygon class="radar-grid" opacity="0.3" points="100,80 119,93 111,116 89,116 81,93"></polygon>
+<polygon class="radar-area" points="100,25 165,78 120,150 70,140 35,80"></polygon>
+<line class="radar-grid" opacity="0.2" x1="100" x2="100" y1="100" y2="20"></line>
+<line class="radar-grid" opacity="0.2" x1="100" x2="176" y1="100" y2="75"></line>
+<line class="radar-grid" opacity="0.2" x1="100" x2="147" y1="100" y2="165"></line>
+<line class="radar-grid" opacity="0.2" x1="100" x2="53" y1="100" y2="165"></line>
+<line class="radar-grid" opacity="0.2" x1="100" x2="24" y1="100" y2="75"></line>
+</svg>
+<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 text-[11px] font-bold text-gray-500 dark:text-gray-400 bg-white dark:bg-surface-dark px-1 rounded">主旨概括</div>
+<div class="absolute top-[35%] right-0 translate-x-3 text-[11px] font-bold text-gray-500 dark:text-gray-400 bg-white dark:bg-surface-dark px-1 rounded">推理判断</div>
+<div class="absolute bottom-[20%] right-2 translate-y-1 text-[11px] font-bold text-gray-500 dark:text-gray-400 bg-white dark:bg-surface-dark px-1 rounded">语言运用</div>
+<div class="absolute bottom-[20%] left-2 translate-y-1 text-[11px] font-bold text-gray-500 dark:text-gray-400 bg-white dark:bg-surface-dark px-1 rounded">人物分析</div>
+<div class="absolute top-[35%] left-0 -translate-x-3 text-[11px] font-bold text-gray-500 dark:text-gray-400 bg-white dark:bg-surface-dark px-1 rounded">细节观察</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-full bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md p-6 border-t border-gray-100 dark:border-gray-800 flex flex-col gap-3 z-20">
+<button class="w-full h-14 bg-primary hover:bg-primary-dark text-white rounded-full font-bold text-lg shadow-lg shadow-orange-200 dark:shadow-none flex items-center justify-center gap-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined">replay</span>
+                再来一篇
+            </button>
+<div class="flex gap-3">
+<button class="flex-1 h-12 bg-white dark:bg-surface-dark border-2 border-primary text-primary hover:bg-orange-50 dark:hover:bg-gray-800 rounded-full font-bold text-sm flex items-center justify-center gap-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined">collections_bookmark</span>
+                    查看勋章收藏
+                </button>
+<button class="flex-1 h-12 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 font-medium text-sm flex items-center justify-center transition-colors">
+                    今天到此为止
+                </button>
+</div>
+</div>
+</div>
+
+</body></html>

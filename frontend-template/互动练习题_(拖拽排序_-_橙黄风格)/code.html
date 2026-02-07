@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f4c025",
+                        "background-light": "#fdf8e6",
+                        "background-dark": "#221e10",
+                        "card-border": "#eab308",
+                        "text-main": "#5c4000"
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "Noto Sans SC", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<title>互动练习题</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between p-4 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20">
+<span class="material-symbols-outlined text-primary font-bold">arrow_back_ios_new</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">互动练习题</h2>
+<div class="flex items-center gap-1 bg-primary/10 px-3 py-1 rounded-full">
+<span class="text-primary text-sm font-black">1</span>
+<span class="text-primary/60 text-xs font-bold">/ 5</span>
+</div>
+</header>
+<!-- Progress Bar Section -->
+<div class="px-6 py-2">
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<p class="text-sm font-bold text-primary/80 uppercase tracking-wider">练习进度</p>
+<p class="text-xs font-bold text-primary/60">20%</p>
+</div>
+<div class="h-3 w-full bg-primary/20 rounded-full overflow-hidden border border-primary/10">
+<div class="h-full bg-primary rounded-full" style="width: 20%;"></div>
+</div>
+</div>
+</div>
+<!-- Question Title -->
+<div class="px-6 pt-6 pb-4">
+<div class="bg-white dark:bg-white/5 p-4 rounded-xl border-2 border-primary/20 shadow-sm text-center">
+<h3 class="text-xl font-black leading-tight text-text-main dark:text-primary">请按故事发展顺序排列图片</h3>
+</div>
+</div>
+<!-- Draggable Area -->
+<main class="flex-1 px-4 overflow-y-auto pb-32">
+<!-- Draggable Cards Grid -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<!-- Card A -->
+<div class="relative group active:scale-95 transition-transform">
+<div class="aspect-square rounded-xl bg-white dark:bg-white/10 border-4 border-primary/30 overflow-hidden shadow-lg flex flex-col">
+<div class="flex-1 bg-cover bg-center" data-alt="Cartoon illustration of a small seed in soil" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSlAMUf-JbLtqlEBSCjahOWEOzQ9VkYZ9F84XmCT5jDNTKFj7WB6CGGwjPNyBTQ2tqtkwexTigHTfy0t-g1Zznpe9pOpZjeMitADfdxztTJyjEGWmsJ8wydZHWqx25vLxxW0ryQCDIeUeu-AaRzTUyA2UPYNyv7RfTTynjIhTSJYnOTLuFC_ec9xCr-6k6kNs5bC2aY-0CdGjOgVr58FwRmQ8EqcIeLQ4BFT9do0itN_u_cnI_19ooOP8Ga0jUi6YYqoDn3BoRPE0')"></div>
+<div class="bg-primary/10 p-2 text-center">
+<span class="font-bold text-sm">小种子</span>
+</div>
+</div>
+<div class="absolute -top-2 -right-2 size-8 bg-primary rounded-full flex items-center justify-center border-4 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-white text-sm font-bold">drag_indicator</span>
+</div>
+</div>
+<!-- Card B -->
+<div class="relative group active:scale-95 transition-transform">
+<div class="aspect-square rounded-xl bg-white dark:bg-white/10 border-4 border-primary/30 overflow-hidden shadow-lg flex flex-col">
+<div class="flex-1 bg-cover bg-center" data-alt="Cartoon illustration of a tiny green sprout" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBWL_N-oSnGX4SiP_-SBXu8Ww8PXVVIp8sYOTAO1nNt4DJJ6LGBCOhIszEbxuONks-14M79-nzk76dLxalnF1VS30c4za_4brd_l8kaoGi2FgNYMvdQV7asafdw85Tv99LRjYzaRzXOCPeRNZcvtIzJkvS-8mUY4vJH0fZP-aEWH9tttkIxDauNPS93tqFWI6_FzTGivqIFAYbwyZBHaylrE9sVsc66xqTnRdYCamc4bsk0H5dERSHVzOKZUa3JGv6HPCt3DYed91E')"></div>
+<div class="bg-primary/10 p-2 text-center">
+<span class="font-bold text-sm">发芽了</span>
+</div>
+</div>
+<div class="absolute -top-2 -right-2 size-8 bg-primary rounded-full flex items-center justify-center border-4 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-white text-sm font-bold">drag_indicator</span>
+</div>
+</div>
+<!-- Card C -->
+<div class="relative group active:scale-95 transition-transform">
+<div class="aspect-square rounded-xl bg-white dark:bg-white/10 border-4 border-primary/30 overflow-hidden shadow-lg flex flex-col">
+<div class="flex-1 bg-cover bg-center" data-alt="Cartoon illustration of a flower bud" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAyNMkOGWkyhw8qXND_8zMPdILL0PUzUSBAAioOBWosiFe_rNx_GgvwDvz4aJLHNl8yiEz5qPp95dqKw074y17kMWPKflLMO8d5_lNszzhf3PAghmwF_Vc7N7zy7rXwSGISdQxHUnpYk_16rVBojiEjySui9wpXx0_fUzDTDy8jVmnpjLWflbAEI0_S90HtDIrphJC0tYuhJOOMTt7avoKLYono8fbekJRSJSA2shGHkq4D181F-HXI9BRuDqUaTPMubZBkIAMEg_k')"></div>
+<div class="bg-primary/10 p-2 text-center">
+<span class="font-bold text-sm">结花苞</span>
+</div>
+</div>
+<div class="absolute -top-2 -right-2 size-8 bg-primary rounded-full flex items-center justify-center border-4 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-white text-sm font-bold">drag_indicator</span>
+</div>
+</div>
+<!-- Card D -->
+<div class="relative group active:scale-95 transition-transform">
+<div class="aspect-square rounded-xl bg-white dark:bg-white/10 border-4 border-primary/30 overflow-hidden shadow-lg flex flex-col">
+<div class="flex-1 bg-cover bg-center" data-alt="Cartoon illustration of a sunflower blooming" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABuxGNwkTpDKvTQISSFtVROC6JIKh3POl6lCUnY0Up988YMkNLlYhYiv_O3lhr3jrEvkK70vStaG-uvyaIMCIebLeqKG5BnU8DXR3BKfDCGBhcnyJFmmqzW0ESHKx17C8EFfAA6L-eEu1vqMj73KNdpcFcwpMjB9PZTUQCh8lGmBK2GoV0m_uRGm0qatXHhGE0zNL4yqHeqUBAMTeZfQ0V3dCcvIf8ZUwfBMUp8fmO9jxWnMG6wBDktKtlaEMtA4WkQ8_jc9cJqCU')"></div>
+<div class="bg-primary/10 p-2 text-center">
+<span class="font-bold text-sm">开花啦</span>
+</div>
+</div>
+<div class="absolute -top-2 -right-2 size-8 bg-primary rounded-full flex items-center justify-center border-4 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-white text-sm font-bold">drag_indicator</span>
+</div>
+</div>
+</div>
+<!-- Drop Slots Section -->
+<div class="flex flex-col gap-4">
+<h4 class="text-center text-primary/60 font-bold text-sm tracking-widest">请拖到下方排序</h4>
+<div class="grid grid-cols-4 gap-3">
+<div class="aspect-square rounded-2xl border-4 border-dashed border-primary/30 flex items-center justify-center relative">
+<span class="text-primary/40 text-4xl font-black">1</span>
+</div>
+<div class="aspect-square rounded-2xl border-4 border-dashed border-primary/30 flex items-center justify-center relative">
+<span class="text-primary/40 text-4xl font-black">2</span>
+</div>
+<div class="aspect-square rounded-2xl border-4 border-dashed border-primary/30 flex items-center justify-center relative">
+<span class="text-primary/40 text-4xl font-black">3</span>
+</div>
+<div class="aspect-square rounded-2xl border-4 border-dashed border-primary/30 flex items-center justify-center relative">
+<span class="text-primary/40 text-4xl font-black">4</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Docked Action Bar -->
+<footer class="fixed bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-background-dark/90 backdrop-blur-lg border-t-2 border-primary/10 shadow-[0_-10px_20px_rgba(244,192,37,0.05)]">
+<div class="max-w-md mx-auto flex items-center gap-3">
+<!-- Gentle Hint Button -->
+<button class="flex flex-col items-center justify-center size-14 rounded-2xl bg-primary/10 text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-2xl">lightbulb</span>
+<span class="text-[10px] font-bold">温柔提示</span>
+</button>
+<!-- Read Original Button -->
+<button class="flex-1 h-14 border-2 border-primary/30 rounded-2xl font-bold text-primary dark:text-primary active:scale-95 transition-transform">
+                查看原文
+            </button>
+<!-- Confirm Answer Button -->
+<button class="flex-[1.5] h-14 bg-primary rounded-2xl font-bold text-white shadow-lg shadow-primary/30 flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                确认答案
+                <span class="material-symbols-outlined font-bold">check_circle</span>
+</button>
+</div>
+<!-- iPhone Safe Area Spacer -->
+<div class="h-6"></div>
+</footer>
+</body></html>
