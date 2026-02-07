@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "完成练习",
+  "navigationBarBackgroundColor": "#FFF8E7",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "radar-chart": "/components/radar-chart/radar-chart",
+    "badge-popup": "/components/badge-popup/badge-popup"
+  }
+}

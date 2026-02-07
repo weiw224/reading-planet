@@ -1,0 +1,152 @@
+<!-- 答题页 - 参考原型: interactive_quiz_question -->
+<view class="page-quiz">
+  <!-- 顶部导航 -->
+  <view class="nav-bar">
+    <view class="nav-left" bindtap="handleClose">
+      <image src="/images/icons/close.png" mode="aspectFit" />
+    </view>
+    
+    <view class="nav-center">
+      <text class="quiz-title">{{currentQuestion.type_text}}</text>
+    </view>
+    
+    <view class="nav-right">
+      <!-- 火焰积分 -->
+      <view class="score-badge">
+        <image src="/images/icons/fire.png" mode="aspectFit" />
+        <text>{{totalScore}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 进度条区域 -->
+  <view class="progress-section">
+    <text class="progress-text">第 {{currentIndex + 1}} / {{questions.length}} 题</text>
+    
+    <!-- 猫头鹰引导角色 -->
+    <view class="mascot-owl">
+      <image src="/images/mascots/owl.png" mode="aspectFit" />
+    </view>
+    
+    <!-- 进度条 -->
+    <view class="progress-bar">
+      <view 
+        class="progress-fill" 
+        style="width: {{progressPercent}}%"
+      ></view>
+      <view 
+        class="progress-pending" 
+        style="width: {{100 - progressPercent}}%"
+      ></view>
+    </view>
+  </view>
+
+  <!-- 题目内容区 -->
+  <view class="question-content">
+    <!-- 选择题 -->
+    <quiz-choice
+      wx:if="{{currentQuestion.type === 'CHOICE'}}"
+      question="{{currentQuestion}}"
+      selected-answer="{{selectedAnswer}}"
+      show-result="{{showResult}}"
+      bind:select="onSelectAnswer"
+    />
+
+    <!-- 判断题 -->
+    <quiz-choice
+      wx:if="{{currentQuestion.type === 'JUDGMENT'}}"
+      question="{{currentQuestion}}"
+      selected-answer="{{selectedAnswer}}"
+      show-result="{{showResult}}"
+      is-judgment="{{true}}"
+      bind:select="onSelectAnswer"
+    />
+
+    <!-- 连线题 -->
+    <quiz-matching
+      wx:if="{{currentQuestion.type === 'MATCHING'}}"
+      question="{{currentQuestion}}"
+      connections="{{connections}}"
+      show-result="{{showResult}}"
+      bind:connect="onConnect"
+    />
+
+    <!-- 排序题 -->
+    <quiz-sorting
+      wx:if="{{currentQuestion.type === 'SORTING'}}"
+      question="{{currentQuestion}}"
+      sorted-items="{{sortedItems}}"
+      show-result="{{showResult}}"
+      bind:sort="onSort"
+    />
+
+    <!-- 填空题 -->
+    <quiz-fill
+      wx:if="{{currentQuestion.type === 'FILL'}}"
+      question="{{currentQuestion}}"
+      fill-answer="{{fillAnswer}}"
+      show-result="{{showResult}}"
+      bind:input="onFillInput"
+    />
+
+    <!-- 简答题 -->
+    <view class="short-answer" wx:if="{{currentQuestion.type === 'SHORT_ANSWER'}}">
+      <view class="question-text">{{currentQuestion.content}}</view>
+      <textarea 
+        class="answer-input"
+        placeholder="请输入你的答案..."
+        value="{{shortAnswer}}"
+        bindinput="onShortAnswerInput"
+        maxlength="500"
+        disabled="{{showResult}}"
+      />
+      <view class="char-count">{{shortAnswer.length}}/500</view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar safe-area-bottom">
+    <!-- 温柔提示按钮 -->
+    <view class="btn-hint" bindtap="showHint">
+      <image src="/images/icons/hint-bulb.png" mode="aspectFit" />
+      <text>温柔提示</text>
+    </view>
+
+    <!-- 查看原文按钮 -->
+    <view class="btn-article" bindtap="showArticle">
+      <image src="/images/icons/book-open.png" mode="aspectFit" />
+      <text>查看原文</text>
+    </view>
+
+    <!-- 确认/下一题按钮 -->
+    <button 
+      class="btn-confirm {{canSubmit ? '' : 'disabled'}}"
+      bindtap="handleConfirm"
+      disabled="{{!canSubmit}}"
+      loading="{{submitting}}"
+    >
+      <text>{{showResult ? (isLastQuestion ? '完成练习' : '下一题') : '确认答案'}}</text>
+      <image 
+        wx:if="{{showResult && !isLastQuestion}}"
+        src="/images/icons/arrow-right-white.png" 
+        mode="aspectFit" 
+      />
+    </button>
+  </view>
+
+  <!-- 温柔提示弹窗 -->
+  <gentle-hint
+    wx:if="{{showHintPopup}}"
+    hint="{{currentQuestion.hint}}"
+    images="{{currentQuestion.hint_images}}"
+    bind:close="closeHint"
+  />
+
+  <!-- 查看原文弹窗 -->
+  <article-popup
+    wx:if="{{showArticlePopup}}"
+    article="{{article}}"
+    highlight-text="{{currentQuestion.excerpt}}"
+    bind:close="closeArticle"
+  />
+</view>

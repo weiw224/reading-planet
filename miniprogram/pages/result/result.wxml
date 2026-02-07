@@ -1,0 +1,109 @@
+<!-- 结果页 - 参考原型: practice_results_&_badge_unlock -->
+<view class="page-result">
+  <!-- 顶部导航 -->
+  <view class="nav-bar">
+    <view class="nav-left" bindtap="goBack">
+      <image src="/images/icons/arrow-left.png" mode="aspectFit" />
+    </view>
+    <text class="nav-title">完成练习</text>
+    <view class="nav-right"></view>
+  </view>
+
+  <!-- 主内容区 -->
+  <scroll-view class="main-content" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 成绩展示 -->
+    <view class="score-section">
+      <text class="congrats-text">太棒了！</text>
+      
+      <!-- 星星评级 -->
+      <view class="stars-rating">
+        <image 
+          wx:for="{{[1,2,3]}}" 
+          wx:key="*this"
+          src="{{item <= starCount ? '/images/icons/star-filled.png' : '/images/icons/star-empty.png'}}"
+          mode="aspectFit"
+          class="star-icon {{item <= starCount ? 'active' : ''}}"
+        />
+      </view>
+
+      <!-- 鼓励语 -->
+      <view class="encourage-card">
+        <image class="avatar" src="{{userInfo.avatar_url || '/images/default-avatar.png'}}" mode="aspectFill" />
+        <text class="encourage-text">{{encourageText}}</text>
+      </view>
+    </view>
+
+    <!-- 勋章解锁 -->
+    <view class="badge-section" wx:if="{{newBadge}}">
+      <view class="badge-card" bindtap="showBadgeDetail">
+        <view class="badge-glow"></view>
+        <view class="badge-icon-wrapper">
+          <image class="badge-icon" src="{{newBadge.icon_url}}" mode="aspectFit" />
+        </view>
+        <view class="badge-info">
+          <text class="unlock-label">解锁新勋章！</text>
+          <text class="badge-name">{{newBadge.name}}</text>
+          <text class="badge-desc">{{newBadge.description}}</text>
+        </view>
+        <view class="sparkles">
+          <image src="/images/icons/sparkle.png" mode="aspectFit" />
+        </view>
+      </view>
+    </view>
+
+    <!-- 用时与正确率 -->
+    <view class="stats-section">
+      <view class="stat-item">
+        <image src="/images/icons/clock.png" mode="aspectFit" />
+        <text class="stat-label">用时对比</text>
+        <text class="stat-value">{{timeSpentText}}</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <image src="/images/icons/target.png" mode="aspectFit" />
+        <text class="stat-label">正确率</text>
+        <text class="stat-value">{{accuracy}}%</text>
+      </view>
+    </view>
+
+    <!-- 能力分布 -->
+    <view class="ability-section">
+      <text class="section-title">能力分布</text>
+      <view class="radar-wrapper">
+        <radar-chart 
+          data="{{abilityData}}"
+          size="{{400}}"
+        />
+      </view>
+    </view>
+
+    <!-- 底部占位 -->
+    <view class="bottom-placeholder"></view>
+  </scroll-view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar safe-area-bottom">
+    <button class="btn-again" bindtap="readAgain">
+      <image src="/images/icons/refresh.png" mode="aspectFit" />
+      <text>再来一篇</text>
+    </button>
+    
+    <view class="secondary-actions">
+      <view class="action-item" bindtap="viewBadges">
+        <image src="/images/icons/badge.png" mode="aspectFit" />
+        <text>查看勋章收藏</text>
+      </view>
+      <view class="action-item" bindtap="goHome">
+        <text>今天到此为止</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 勋章详情弹窗 -->
+  <badge-popup
+    wx:if="{{showBadgePopup}}"
+    badge="{{newBadge}}"
+    bind:close="closeBadgePopup"
+    bind:share="shareBadge"
+  />
+</view>

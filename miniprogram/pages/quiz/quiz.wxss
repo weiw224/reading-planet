@@ -1,0 +1,257 @@
+/* 答题页样式 - 橙黄暖色调 */
+.page-quiz {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #FFFBF0 0%, #FFF8E7 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 导航栏 */
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  padding-top: calc(20rpx + var(--status-bar-height, 44px));
+}
+
+.nav-left, .nav-right {
+  width: 100rpx;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.nav-left image {
+  width: 56rpx;
+  height: 56rpx;
+  padding: 8rpx;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+}
+
+.nav-center {
+  flex: 1;
+  text-align: center;
+}
+
+.quiz-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.score-badge {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 8rpx 20rpx;
+  border-radius: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+}
+
+.score-badge image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 8rpx;
+}
+
+.score-badge text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #F5A623;
+}
+
+/* 进度区域 */
+.progress-section {
+  padding: 20rpx 30rpx;
+  position: relative;
+}
+
+.progress-text {
+  font-size: 26rpx;
+  color: #888;
+}
+
+.mascot-owl {
+  position: absolute;
+  right: 30rpx;
+  top: 0;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.mascot-owl image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 进度条 */
+.progress-bar {
+  display: flex;
+  height: 12rpx;
+  border-radius: 6rpx;
+  overflow: hidden;
+  margin-top: 16rpx;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #F5A623 0%, #FFB84D 100%);
+  border-radius: 6rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-pending {
+  background: #FEE4B3;
+}
+
+/* 题目内容区 */
+.question-content {
+  flex: 1;
+  padding: 20rpx 30rpx;
+  overflow-y: auto;
+}
+
+/* 简答题 */
+.short-answer {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.question-text {
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 30rpx;
+}
+
+.answer-input {
+  width: 100%;
+  height: 300rpx;
+  background: #FAFAFA;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  font-size: 30rpx;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 12rpx;
+}
+
+/* 底部操作栏 */
+.bottom-bar {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx 30rpx;
+  background: #fff;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.05);
+  gap: 20rpx;
+}
+
+.btn-hint, .btn-article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12rpx 16rpx;
+}
+
+.btn-hint image, .btn-article image {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 4rpx;
+}
+
+.btn-hint text, .btn-article text {
+  font-size: 20rpx;
+  color: #666;
+}
+
+.btn-confirm {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88rpx;
+  background: #F5A623;
+  border-radius: 44rpx;
+  border: none;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #fff;
+}
+
+.btn-confirm::after {
+  border: none;
+}
+
+.btn-confirm.disabled {
+  background: #ccc;
+}
+
+.btn-confirm image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 8rpx;
+}
+
+/* 答案反馈样式 */
+.answer-feedback {
+  margin-top: 30rpx;
+  padding: 24rpx;
+  border-radius: 16rpx;
+}
+
+.answer-feedback.correct {
+  background: rgba(82, 196, 26, 0.1);
+  border: 2rpx solid #52C41A;
+}
+
+.answer-feedback.wrong {
+  background: rgba(255, 77, 79, 0.1);
+  border: 2rpx solid #FF4D4F;
+}
+
+.feedback-title {
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+}
+
+.feedback-title.correct {
+  color: #52C41A;
+}
+
+.feedback-title.wrong {
+  color: #FF4D4F;
+}
+
+.feedback-title image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 12rpx;
+}
+
+.feedback-content {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}

@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "互动练习题",
+  "navigationBarBackgroundColor": "#FFF8E7",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "quiz-choice": "/components/quiz-choice/quiz-choice",
+    "quiz-matching": "/components/quiz-matching/quiz-matching",
+    "quiz-sorting": "/components/quiz-sorting/quiz-sorting",
+    "quiz-fill": "/components/quiz-fill/quiz-fill",
+    "gentle-hint": "/components/gentle-hint/gentle-hint",
+    "article-popup": "/components/article-popup/article-popup"
+  }
+}
