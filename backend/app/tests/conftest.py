@@ -90,7 +90,7 @@ async def test_question(test_article, db_session):
         type=QuestionTypeEnum.CHOICE,
         difficulty=DifficultyEnum.EASY,
         content="测试问题",
-        options='{"A": "选项A", "B": "选项B", "C": "选项C", "D": "选项D"}',
+        options=["A", "B", "C", "D"],
         answer="A",
         explanation="测试解析"
     )
