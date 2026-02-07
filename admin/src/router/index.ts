@@ -1,5 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
+const ADMIN_TOKEN_KEY = 'admin_token'
+
+interface RouteMeta {
+  requiresAuth?: boolean
+  title?: string
+}
+
 const routes: RouteRecordRaw[] = [
   {
     path: '/login',
@@ -88,6 +95,11 @@ const routes: RouteRecordRaw[] = [
       },
     ]
   },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@/views/NotFound.vue'),
+  },
 ]
 
 const router = createRouter({
@@ -95,14 +107,21 @@ const router = createRouter({
   routes,
 })
 
-// 路由守卫
 router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('admin_token')
-  
+  const token = localStorage.getItem(ADMIN_TOKEN_KEY)
+
   if (to.meta.requiresAuth !== false && !token) {
-    next('/login')
+    if (to.path !== '/login') {
+      next('/login')
+    } else {
+      next()
+    }
   } else if (to.path === '/login' && token) {
-    next('/dashboard')
+    if (from.path !== '/dashboard') {
+      next('/dashboard')
+    } else {
+      next()
+    }
   } else {
     next()
   }
