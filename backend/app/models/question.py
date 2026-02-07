@@ -9,9 +9,9 @@ from sqlalchemy import (
     ForeignKey,
     JSON,
     Boolean,
+    UniqueConstraint,
 )
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql import UniqueConstraint
 from app.database import Base
 from app.models.article import DifficultyEnum
 import enum

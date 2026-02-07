@@ -1,7 +1,6 @@
 from datetime import datetime, timezone
-from sqlalchemy import Column, Integer, String, Text, DateTime, Enum as SQLEnum, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, DateTime, Enum as SQLEnum, Boolean, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql import UniqueConstraint
 from app.database import Base
 import enum
 
