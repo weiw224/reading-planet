@@ -2,7 +2,8 @@ import pytest
 import asyncio
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from sqlalchemy import Column, Integer, String, Text, DateTime, Enum as SQLEnum, Boolean, ForeignKey, UniqueConstraint
+from sqlalchemy import Column, Integer, String, Text, DateTime, Enum as SQLEnum, Boolean, ForeignKey, UniqueConstraint, select
+from sqlalchemy.exc import IntegrityError
 from datetime import datetime, timezone
 import enum
 
@@ -236,8 +237,34 @@ async def test_article_tag_unique_constraint(test_session: AsyncSession):
     article_tag2 = ArticleTag(article_id=article.id, tag_id=tag.id)
     test_session.add(article_tag2)
     
-    with pytest.raises(Exception):  # Should raise an integrity error
+    with pytest.raises(IntegrityError):
         await test_session.commit()
+
+
+@pytest.mark.asyncio
+async def test_article_tag_foreign_key_cascade_configured(test_engine):
+    """测试ArticleTag外键CASCADE配置（验证数据库约束定义）"""
+    from sqlalchemy.engine import reflection
+    
+    # 使用引擎获取检查器
+    async with test_engine.connect() as conn:
+        inspector = await conn.run_sync(
+            lambda sync_conn: reflection.Inspector.from_engine(sync_conn)
+        )
+        
+        foreign_keys = await conn.run_sync(
+            lambda sync_conn: inspector.get_foreign_keys('article_tags')
+        )
+        
+        # 验证article_id外键配置
+        article_fk = [fk for fk in foreign_keys if 'article_id' in fk['constrained_columns']][0]
+        assert 'options' in article_fk
+        assert article_fk['options'].get('ondelete') == 'CASCADE'
+        
+        # 验证tag_id外键配置
+        tag_fk = [fk for fk in foreign_keys if 'tag_id' in fk['constrained_columns']][0]
+        assert 'options' in tag_fk
+        assert tag_fk['options'].get('ondelete') == 'CASCADE'
 
 
 
