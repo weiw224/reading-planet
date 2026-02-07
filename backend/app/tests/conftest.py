@@ -4,7 +4,7 @@ from app.main import app
 from app.database import AsyncSessionLocal, init_db, engine
 from sqlalchemy import text
 from app.models.user import User
-from app.models.article import Article, DifficultyEnum
+from app.models.article import Article, DifficultyEnum, ArticleStatusEnum
 from app.models.tag import Tag
 from app.models.question import Question, QuestionTypeEnum
 
@@ -72,7 +72,9 @@ async def test_article(db_session):
         title="测试文章",
         content="这是测试内容",
         word_count=100,
-        reading_time=1
+        reading_time=1,
+        status=ArticleStatusEnum.PUBLISHED,
+        article_difficulty=DifficultyEnum.EASY
     )
     db_session.add(article)
     await db_session.commit()
