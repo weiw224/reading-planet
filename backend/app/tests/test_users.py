@@ -54,14 +54,15 @@ async def test_update_user_grade(async_client: AsyncClient, db_session, auth_hea
     
     response = await async_client.put(
         "/api/v1/users/me",
-        json={"grade": "3年级"},
+        json={"grade": "GRADE_3"},
         headers=auth_headers
     )
     
     assert response.status_code == 200
     data = response.json()
     assert data["code"] == 0
-    assert data["data"]["grade"] == "3年级"
+    assert data["data"]["grade"] == "GRADE_3"
+
 
 
 @pytest.mark.asyncio

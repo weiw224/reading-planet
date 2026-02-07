@@ -27,12 +27,12 @@ class UserService:
         for field, value in update_data.items():
             if field == "grade" and value is not None:
                 grade_map = {
-                    "1年级": DBGradeEnum.GRADE_1,
-                    "2年级": DBGradeEnum.GRADE_2,
-                    "3年级": DBGradeEnum.GRADE_3,
-                    "4年级": DBGradeEnum.GRADE_4,
-                    "5年级": DBGradeEnum.GRADE_5,
-                    "6年级": DBGradeEnum.GRADE_6,
+                    "GRADE_1": DBGradeEnum.GRADE_1,
+                    "GRADE_2": DBGradeEnum.GRADE_2,
+                    "GRADE_3": DBGradeEnum.GRADE_3,
+                    "GRADE_4": DBGradeEnum.GRADE_4,
+                    "GRADE_5": DBGradeEnum.GRADE_5,
+                    "GRADE_6": DBGradeEnum.GRADE_6,
                 }
                 setattr(user, field, grade_map.get(value))
             else:
@@ -41,6 +41,7 @@ class UserService:
         await db.commit()
         await db.refresh(user)
         return user
+
 
     
     @staticmethod
