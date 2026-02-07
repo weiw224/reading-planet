@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy import Column, Integer, String, Text, DateTime, Enum as SQLEnum, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import UniqueConstraint
@@ -45,8 +45,8 @@ class Article(Base):
     # AI 导入标记
     is_ai_generated = Column(Boolean, default=False, comment="是否AI导入")
     
-    created_at = Column(DateTime, default=datetime.utcnow, comment="创建时间")
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, comment="更新时间")
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), comment="创建时间")
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc), comment="更新时间")
     created_by = Column(Integer, nullable=True, comment="创建者ID（管理员）")
     
     # 关系
@@ -63,8 +63,8 @@ class ArticleTag(Base):
     __tablename__ = "article_tags"
     
     id = Column(Integer, primary_key=True, index=True)
-    article_id = Column(Integer, ForeignKey("articles.id", ondelete="CASCADE"), nullable=False)
-    tag_id = Column(Integer, ForeignKey("tags.id", ondelete="CASCADE"), nullable=False)
+    article_id = Column(Integer, ForeignKey("articles.id", ondelete="CASCADE"), nullable=False, index=True)
+    tag_id = Column(Integer, ForeignKey("tags.id", ondelete="CASCADE"), nullable=False, index=True)
     
     # 关系
     article = relationship("Article", back_populates="tags")
