@@ -1,0 +1,141 @@
+.quiz-choice {
+  padding: 0;
+}
+
+.question-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.question-text {
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.6;
+}
+
+.question-image {
+  width: 100%;
+  max-height: 400rpx;
+  margin-top: 24rpx;
+  border-radius: 16rpx;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 3rpx solid #eee;
+  border-radius: 50rpx;
+  padding: 24rpx 30rpx;
+  transition: all 0.2s ease;
+}
+
+.option-item.selected {
+  border-color: #F5A623;
+  background: #FFFBF5;
+}
+
+.option-item.correct {
+  border-color: #52C41A;
+  background: #F6FFED;
+}
+
+.option-item.wrong {
+  border-color: #FF4D4F;
+  background: #FFF2F0;
+}
+
+.option-letter {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: #F5F5F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.option-letter.selected {
+  background: #F5A623;
+}
+
+.option-letter text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #666;
+}
+
+.option-letter.selected text {
+  color: #fff;
+}
+
+.option-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.result-icon {
+  width: 44rpx;
+  height: 44rpx;
+  margin-left: 16rpx;
+}
+
+.feedback {
+  margin-top: 30rpx;
+  padding: 24rpx;
+  border-radius: 16rpx;
+}
+
+.feedback.correct {
+  background: #F6FFED;
+  border: 2rpx solid #52C41A;
+}
+
+.feedback.wrong {
+  background: #FFF2F0;
+  border: 2rpx solid #FF4D4F;
+}
+
+.feedback-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.feedback-header image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 12rpx;
+}
+
+.feedback-header text {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.feedback.correct .feedback-header text {
+  color: #52C41A;
+}
+
+.feedback.wrong .feedback-header text {
+  color: #FF4D4F;
+}
+
+.feedback-analysis {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}

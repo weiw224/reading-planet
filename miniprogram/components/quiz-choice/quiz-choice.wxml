@@ -1,0 +1,48 @@
+<view class="quiz-choice">
+  <view class="question-card">
+    <text class="question-text">{{question.content}}</text>
+    
+    <image 
+      wx:if="{{question.image_url}}" 
+      class="question-image"
+      src="{{question.image_url}}" 
+      mode="aspectFit"
+    />
+  </view>
+
+  <view class="options-list">
+    <view 
+      class="option-item {{item.key === selectedAnswer ? 'selected' : ''}} {{showResult ? (item.key === question.correct_answer ? 'correct' : (item.key === selectedAnswer ? 'wrong' : '')) : ''}}"
+      wx:for="{{options}}"
+      wx:key="key"
+      bindtap="selectOption"
+      data-key="{{item.key}}"
+    >
+      <view class="option-letter {{item.key === selectedAnswer ? 'selected' : ''}}">
+        <text>{{item.key}}</text>
+      </view>
+      <text class="option-text">{{item.text}}</text>
+      
+      <image 
+        wx:if="{{showResult && item.key === question.correct_answer}}"
+        class="result-icon"
+        src="/images/icons/check-circle-green.png" 
+        mode="aspectFit"
+      />
+      <image 
+        wx:if="{{showResult && item.key === selectedAnswer && item.key !== question.correct_answer}}"
+        class="result-icon"
+        src="/images/icons/close-circle-red.png" 
+        mode="aspectFit"
+      />
+    </view>
+  </view>
+
+  <view class="feedback {{question.isCorrect ? 'correct' : 'wrong'}}" wx:if="{{showResult}}">
+    <view class="feedback-header">
+      <image src="{{question.isCorrect ? '/images/icons/check-circle-green.png' : '/images/icons/close-circle-red.png'}}" mode="aspectFit" />
+      <text>{{question.isCorrect ? '回答正确！' : '回答错误'}}</text>
+    </view>
+    <text class="feedback-analysis" wx:if="{{question.analysis}}">{{question.analysis}}</text>
+  </view>
+</view>

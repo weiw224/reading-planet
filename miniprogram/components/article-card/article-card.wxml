@@ -1,0 +1,29 @@
+<view class="article-card" bindtap="handleTap">
+  <view class="cover-wrapper">
+    <image class="cover" src="{{article.cover_url}}" mode="aspectFill" />
+    <view class="badge" wx:if="{{showBadge}}">
+      <text>{{badgeText}}</text>
+    </view>
+  </view>
+  
+  <view class="content">
+    <text class="title">《{{article.title}}》</text>
+    <view class="meta">
+      <text class="grade">{{article.grade_text}}</text>
+      <text class="dot">·</text>
+      <text class="word-count">{{article.word_count}}字</text>
+      <text class="dot">·</text>
+      <text class="time">{{article.estimated_time}}分钟</text>
+    </view>
+    <view class="stars">
+      <image 
+        wx:for="{{[1,2,3,4,5]}}" 
+        wx:key="*this"
+        src="{{item <= article.rating ? '/images/icons/star-filled-small.png' : '/images/icons/star-empty-small.png'}}"
+        mode="aspectFit"
+      />
+    </view>
+  </view>
+  
+  <button class="btn-start" catchtap="handleStart">开始练习</button>
+</view>

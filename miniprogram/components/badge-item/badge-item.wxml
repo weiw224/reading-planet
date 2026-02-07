@@ -1,0 +1,9 @@
+<view class="badge-item" bindtap="handleTap">
+  <view class="badge-icon">
+    <image src="{{badge.icon_url}}" mode="aspectFit" />
+  </view>
+  <view class="badge-info">
+    <text class="badge-name">{{badge.name}}</text>
+    <text class="badge-status">{{badge.status}}</text>
+  </view>
+</view>

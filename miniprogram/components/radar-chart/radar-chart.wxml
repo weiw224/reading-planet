@@ -1,0 +1,6 @@
+<canvas 
+  type="2d" 
+  id="radarCanvas" 
+  class="radar-canvas"
+  style="width: {{size}}rpx; height: {{size}}rpx;"
+></canvas>

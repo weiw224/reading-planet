@@ -1,0 +1,31 @@
+<view class="calendar">
+  <view class="weekdays">
+    <text wx:for="{{weekdays}}" wx:key="*this">{{item}}</text>
+  </view>
+  
+  <view class="days-grid">
+    <view 
+      class="day-item {{item.isToday ? 'today' : ''}} {{item.isChecked ? 'checked' : ''}} {{item.isFuture ? 'future' : ''}} {{item.isEmpty ? 'empty' : ''}}"
+      wx:for="{{daysArray}}"
+      wx:key="index"
+    >
+      <block wx:if="{{!item.isEmpty}}">
+        <view class="check-circle" wx:if="{{item.isChecked}}">
+          <image src="/images/icons/check.png" mode="aspectFit" />
+        </view>
+        
+        <view class="today-circle" wx:elif="{{item.isToday}}">
+          <text>{{item.day}}</text>
+        </view>
+        
+        <view class="future-icon" wx:elif="{{item.isFuture}}">
+          <image src="/images/icons/lock-small.png" mode="aspectFit" />
+        </view>
+        
+        <text class="day-text" wx:else>{{item.day}}</text>
+      </block>
+      
+      <text class="day-number" wx:if="{{!item.isEmpty}}">{{item.day}}</text>
+    </view>
+  </view>
+</view>

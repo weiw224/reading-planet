@@ -1,0 +1,34 @@
+<view class="today-stats">
+  <view class="stats-header">
+    <text class="title">今日成就</text>
+    <view class="rank-badge" wx:if="{{rankPercent > 0}}">
+      <text>已超越 {{rankPercent}}% 同学</text>
+    </view>
+  </view>
+  
+  <view class="stats-grid">
+    <view class="stat-item">
+      <view class="stat-icon badge">
+        <image src="/images/icons/trophy.png" mode="aspectFit" />
+      </view>
+      <text class="stat-value">{{badgeCount}}</text>
+      <text class="stat-label">获得勋章</text>
+    </view>
+    
+    <view class="stat-item">
+      <view class="stat-icon growth">
+        <image src="/images/icons/sparkle.png" mode="aspectFit" />
+      </view>
+      <text class="stat-value">{{growthValue}}</text>
+      <text class="stat-label">成长值</text>
+    </view>
+    
+    <view class="stat-item">
+      <view class="stat-icon streak">
+        <image src="/images/icons/fire.png" mode="aspectFit" />
+      </view>
+      <text class="stat-value">{{streakDays}}</text>
+      <text class="stat-label">连续天数</text>
+    </view>
+  </view>
+</view>

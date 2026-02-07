@@ -1,0 +1,100 @@
+.calendar {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx;
+}
+
+.weekdays {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 16rpx;
+}
+
+.weekdays text {
+  width: 80rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #888;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8rpx;
+}
+
+.day-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80rpx;
+  position: relative;
+}
+
+.day-item.empty {
+  visibility: hidden;
+}
+
+.check-circle {
+  width: 56rpx;
+  height: 56rpx;
+  background: linear-gradient(135deg, #52C41A 0%, #389E0D 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-circle image {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.today-circle {
+  width: 56rpx;
+  height: 56rpx;
+  border: 3rpx dashed #F5A623;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.today-circle text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #F5A623;
+}
+
+.future-icon {
+  width: 56rpx;
+  height: 56rpx;
+  background: #f5f5f5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.future-icon image {
+  width: 28rpx;
+  height: 28rpx;
+  opacity: 0.5;
+}
+
+.day-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.day-number {
+  position: absolute;
+  bottom: 0;
+  font-size: 18rpx;
+  color: #999;
+}
+
+.day-item.checked .day-number {
+  display: none;
+}

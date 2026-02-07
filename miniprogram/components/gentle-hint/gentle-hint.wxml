@@ -1,0 +1,27 @@
+<view class="gentle-hint-mask" catchtap="close">
+  <view class="gentle-hint-popup" catchtap="preventClose">
+    <view class="drag-bar"></view>
+    
+    <view class="close-btn" bindtap="close">
+      <image src="/images/icons/close.png" mode="aspectFit" />
+    </view>
+    
+    <text class="popup-title">温柔提示</text>
+    
+    <view class="hint-images" wx:if="{{images.length > 0}}">
+      <view class="image-item" wx:for="{{images}}" wx:key="index">
+        <image src="{{item.url}}" mode="aspectFill" />
+        <text class="image-caption">{{item.caption}}</text>
+      </view>
+    </view>
+    
+    <view class="hint-text-wrapper">
+      <view class="hint-icon">
+        <image src="/images/icons/sparkle-orange.png" mode="aspectFit" />
+      </view>
+      <text class="hint-text">{{hint}}</text>
+    </view>
+    
+    <button class="btn-confirm" bindtap="close">我明白了</button>
+  </view>
+</view>

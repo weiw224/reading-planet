@@ -1,0 +1,82 @@
+.article-card {
+  background: #fff;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+}
+
+.cover-wrapper {
+  position: relative;
+  width: 100%;
+  height: 300rpx;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+}
+
+.badge {
+  position: absolute;
+  left: 20rpx;
+  bottom: 20rpx;
+  background: #FF6B35;
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+.badge text {
+  font-size: 22rpx;
+  color: #fff;
+  font-weight: 500;
+}
+
+.content {
+  padding: 24rpx 30rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #F5A623;
+  margin-bottom: 12rpx;
+}
+
+.dot {
+  margin: 0 8rpx;
+  color: #ddd;
+}
+
+.stars {
+  display: flex;
+  gap: 4rpx;
+}
+
+.stars image {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.btn-start {
+  margin: 0 30rpx 24rpx;
+  height: 80rpx;
+  background: rgba(245, 166, 35, 0.15);
+  border: none;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #F5A623;
+}
+
+.btn-start::after {
+  border: none;
+}
