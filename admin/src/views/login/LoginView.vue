@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import { FormInstance, FormRules } from 'element-plus'
+import { FormInstance, FormRules, ElMessage } from 'element-plus'
 import { useAuthStore } from '@/stores/auth'
 
 const authStore = useAuthStore()
@@ -72,6 +72,8 @@ const handleLogin = async () => {
   loading.value = true
   try {
     await authStore.login(form)
+  } catch (error) {
+    ElMessage.error(typeof error === 'string' ? error : '登录失败，请检查用户名和密码')
   } finally {
     loading.value = false
   }
