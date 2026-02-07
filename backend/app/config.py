@@ -23,6 +23,9 @@ class Settings(BaseSettings):
     JWT_ALGORITHM: str = "HS256"
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = 10080
 
+    ADMIN_USERNAME: str = "admin"
+    ADMIN_PASSWORD_HASH: str = ""
+
     ALLOWED_ORIGINS: List[str] = ["http://localhost:3000"]
 
     model_config = SettingsConfigDict(

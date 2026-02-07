@@ -4,11 +4,14 @@ from app.database import get_db
 from app.schemas.auth import (
     WechatLoginRequest, 
     TokenResponse, 
-    AdminLoginRequest
+    AdminLoginRequest,
+    RefreshTokenRequest
 )
 from app.schemas.common import ResponseModel
 from app.services.auth_service import auth_service
 from app.config import settings
+from app.utils.security import verify_token, create_access_token
+from datetime import timedelta
 
 router = APIRouter()
 
@@ -49,3 +52,23 @@ async def admin_login(
         )
     except ValueError as e:
         raise HTTPException(status_code=401, detail=str(e))
+
+
+@router.post("/refresh-token", response_model=ResponseModel[TokenResponse])
+async def refresh_token(request: RefreshTokenRequest):
+    payload = verify_token(request.refresh_token)
+    if not payload:
+        raise HTTPException(status_code=401, detail="Invalid or expired token")
+    
+    access_token = create_access_token(
+        data={"sub": payload["sub"], "openid": payload.get("openid")},
+        expires_delta=timedelta(minutes=settings.JWT_ACCESS_TOKEN_EXPIRE_MINUTES)
+    )
+    
+    return ResponseModel(
+        data=TokenResponse(
+            access_token=access_token,
+            expires_in=settings.JWT_ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+            is_new_user=False
+        )
+    )

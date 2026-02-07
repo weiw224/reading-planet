@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from app.models.user import User
 from app.services.wechat_service import wechat_service
-from app.utils.security import create_access_token
+from app.utils.security import create_access_token, verify_password
 from app.config import settings
 
 
@@ -37,7 +37,13 @@ class AuthService:
     
     @staticmethod
     async def admin_login(db: AsyncSession, username: str, password: str) -> str:
-        if username == "admin" and password == "admin123":
+        if username != settings.ADMIN_USERNAME:
+            raise ValueError("用户名或密码错误")
+        
+        if not settings.ADMIN_PASSWORD_HASH:
+            raise ValueError("管理员密码未配置")
+        
+        if verify_password(password, settings.ADMIN_PASSWORD_HASH):
             access_token = create_access_token(
                 data={"sub": "admin", "role": "admin", "username": username},
                 expires_delta=timedelta(hours=24)

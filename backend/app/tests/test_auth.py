@@ -1,6 +1,7 @@
 import pytest
 from unittest.mock import patch
 from httpx import AsyncClient
+from datetime import timedelta
 
 
 @pytest.mark.asyncio
@@ -98,5 +99,28 @@ async def test_admin_login_invalid_credentials(async_client: AsyncClient):
     assert response.status_code == 401
     data = response.json()
     assert "detail" in data
+
+
+@pytest.mark.asyncio
+async def test_refresh_token_success(async_client: AsyncClient):
+    """测试刷新Token成功"""
+    from app.utils.security import verify_token, create_access_token
+    
+    token = create_access_token(
+        data={"sub": "1", "openid": "test_openid"},
+        expires_delta=timedelta(minutes=30)
+    )
+
+    response = await async_client.post(
+        "/api/v1/auth/refresh-token",
+        json={"refresh_token": token}
+    )
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["code"] == 0
+    assert "access_token" in data["data"]
+    assert data["data"]["token_type"] == "bearer"
+    assert data["data"]["is_new_user"] is False
 
 
