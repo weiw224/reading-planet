@@ -1,0 +1,96 @@
+<!-- 首页 - 参考原型: 首页_(每日练习与日历) -->
+<view class="page-index">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <!-- 用户头像 -->
+    <view class="user-avatar" bindtap="goToProfile">
+      <image 
+        src="{{userInfo.avatar_url || '/images/default-avatar.png'}}" 
+        mode="aspectFill"
+      />
+    </view>
+    
+    <!-- 页面标题 -->
+    <text class="nav-title">首页</text>
+    
+    <!-- 通知图标 -->
+    <view class="notify-icon" bindtap="showNotifications">
+      <image src="/images/icons/bell.png" mode="aspectFit" />
+      <view class="notify-badge" wx:if="{{notifyCount > 0}}"></view>
+    </view>
+  </view>
+
+  <!-- 主内容区 -->
+  <scroll-view 
+    class="main-content" 
+    scroll-y 
+    enhanced
+    show-scrollbar="{{false}}"
+    refresher-enabled
+    refresher-triggered="{{refreshing}}"
+    bindrefresherrefresh="onPullDownRefresh"
+  >
+    <!-- 今日成就卡片 -->
+    <view class="section stats-section">
+      <today-stats 
+        badge-count="{{stats.badgeCount}}"
+        growth-value="{{stats.growthValue}}"
+        streak-days="{{stats.streakDays}}"
+        rank-percent="{{stats.rankPercent}}"
+      />
+    </view>
+
+    <!-- 今日推荐区域 -->
+    <view class="section recommend-section">
+      <view class="section-header">
+        <text class="section-title">今天来练阅读思维吧！</text>
+      </view>
+      
+      <article-card 
+        wx:if="{{todayArticle}}"
+        article="{{todayArticle}}"
+        show-badge="{{true}}"
+        badge-text="今日推荐"
+        bind:start="startReading"
+      />
+      
+      <!-- 无推荐时的状态 -->
+      <view class="empty-recommend" wx:if="{{!todayArticle && !loading}}">
+        <image src="/images/empty-article.png" mode="aspectFit" />
+        <text>今日推荐已完成，明天再来吧~</text>
+      </view>
+    </view>
+
+    <!-- 学习月历 -->
+    <view class="section calendar-section">
+      <view class="section-header">
+        <text class="section-title">学习月历</text>
+        <view class="month-info" bindtap="showMonthPicker">
+          <text>{{currentMonth}}月进度 {{monthProgress}}</text>
+          <image src="/images/icons/arrow-right.png" mode="aspectFit" />
+        </view>
+      </view>
+      
+      <calendar 
+        year="{{currentYear}}"
+        month="{{currentMonth}}"
+        checkin-days="{{checkinDays}}"
+        today="{{today}}"
+      />
+    </view>
+
+    <!-- 激励卡片 -->
+    <view class="motivation-card" wx:if="{{motivationText}}">
+      <view class="motivation-icon">
+        <image src="/images/icons/smile.png" mode="aspectFit" />
+      </view>
+      <view class="motivation-content">
+        <text class="motivation-title">{{motivationTitle}}</text>
+        <text class="motivation-desc">{{motivationText}}</text>
+      </view>
+    </view>
+
+    <!-- 底部占位 -->
+    <view class="bottom-placeholder"></view>
+  </scroll-view>
+</view>

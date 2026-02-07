@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "首页",
+  "navigationBarBackgroundColor": "#FFF8E7",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "today-stats": "/components/today-stats/today-stats",
+    "calendar": "/components/calendar/calendar",
+    "article-card": "/components/article-card/article-card"
+  }
+}
