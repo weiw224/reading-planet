@@ -1,37 +1,50 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/practice/practice",
     "pages/login/login",
+    "pages/grade-select/grade-select",
     "pages/article/article",
     "pages/quiz/quiz",
     "pages/result/result",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/badges/badges",
+    "pages/history/history"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#FF9500",
+    "navigationBarBackgroundColor": "#FFF8E7",
     "navigationBarTitleText": "阅读星球",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FFF8E7"
   },
   "tabBar": {
     "color": "#999999",
-    "selectedColor": "#FF9500",
+    "selectedColor": "#F5A623",
     "backgroundColor": "#ffffff",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "images/tab/home.png",
-        "selectedIconPath": "images/tab/home-active.png"
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/practice/practice",
+        "text": "练习",
+        "iconPath": "images/icons/practice.png",
+        "selectedIconPath": "images/icons/practice-active.png"
       },
       {
         "pagePath": "pages/profile/profile",
         "text": "我的",
-        "iconPath": "images/tab/profile.png",
-        "selectedIconPath": "images/tab/profile-active.png"
+        "iconPath": "images/icons/profile.png",
+        "selectedIconPath": "images/icons/profile-active.png"
       }
     ]
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
 }
