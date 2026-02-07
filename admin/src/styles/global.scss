@@ -1,0 +1,428 @@
+// ============================================
+// Global Styles
+// ============================================
+
+@import './variables.scss';
+
+// ============================================
+// CSS Variables for Theme Support
+// ============================================
+:root {
+  // Colors
+  --color-primary: #{$color-primary};
+  --color-primary-light: #{$color-primary-light};
+  --color-primary-lighter: #{$color-primary-lighter};
+  --color-primary-dark: #{$color-primary-dark};
+
+  --color-success: #{$color-success};
+  --color-success-light: #{$color-success-light};
+  --color-success-lighter: #{$color-success-lighter};
+  --color-success-dark: #{$color-success-dark};
+
+  --color-warning: #{$color-warning};
+  --color-warning-light: #{$color-warning-light};
+  --color-warning-lighter: #{$color-warning-lighter};
+  --color-warning-dark: #{$color-warning-dark};
+
+  --color-danger: #{$color-danger};
+  --color-danger-light: #{$color-danger-light};
+  --color-danger-lighter: #{$color-danger-lighter};
+  --color-danger-dark: #{$color-danger-dark};
+
+  --color-info: #{$color-info};
+  --color-info-light: #{$color-info-light};
+  --color-info-lighter: #{$color-info-lighter};
+  --color-info-dark: #{$color-info-dark};
+
+  // Neutral Colors
+  --color-white: #{$color-white};
+  --color-black: #{$color-black};
+  --color-text-primary: #{$color-text-primary};
+  --color-text-regular: #{$color-text-regular};
+  --color-text-secondary: #{$color-text-secondary};
+  --color-text-placeholder: #{$color-text-placeholder};
+
+  --color-border-base: #{$color-border-base};
+  --color-border-light: #{$color-border-light};
+  --color-border-lighter: #{$color-border-lighter};
+  --color-border-extra-light: #{$color-border-extra-light};
+
+  --color-bg-primary: #{$color-bg-primary};
+  --color-bg-page: #{$color-bg-page};
+  --color-bg-overlay: #{$color-bg-overlay};
+
+  // Typography
+  --font-family-base: #{$font-family-base};
+  --font-family-mono: #{$font-family-mono};
+
+  --font-size-base: #{$font-size-base};
+  --font-size-small: #{$font-size-small};
+  --font-size-large: #{$font-size-large};
+  --font-size-extra-large: #{$font-size-extra-large};
+
+  --font-weight-normal: #{$font-weight-normal};
+  --font-weight-medium: #{$font-weight-medium};
+  --font-weight-bold: #{$font-weight-bold};
+
+  --line-height-base: #{$line-height-base};
+  --line-height-small: #{$line-height-small};
+  --line-height-large: #{$line-height-large};
+
+  // Spacing
+  --spacing-xs: #{$spacing-xs};
+  --spacing-sm: #{$spacing-sm};
+  --spacing-md: #{$spacing-md};
+  --spacing-lg: #{$spacing-lg};
+  --spacing-xl: #{$spacing-xl};
+  --spacing-xxl: #{$spacing-xxl};
+  --spacing-xxxl: #{$spacing-xxxl};
+
+  // Border Radius
+  --border-radius-base: #{$border-radius-base};
+  --border-radius-small: #{$border-radius-small};
+  --border-radius-large: #{$border-radius-large};
+  --border-radius-circle: #{$border-radius-circle};
+
+  // Shadows
+  --shadow-base: #{$shadow-base};
+  --shadow-light: #{$shadow-light};
+  --shadow-dark: #{$shadow-dark};
+
+  // Transitions
+  --transition-base: #{$transition-base};
+  --transition-fast: #{$transition-fast};
+  --transition-slow: #{$transition-slow};
+
+  // Layout
+  --header-height: #{$header-height};
+  --sidebar-width: #{$sidebar-width};
+  --sidebar-collapsed-width: #{$sidebar-collapsed-width};
+  --footer-height: #{$footer-height};
+}
+
+// ============================================
+// CSS Reset & Base Styles
+// ============================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-page);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+// ============================================
+// Typography
+// ============================================
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-small);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--color-primary-light);
+  }
+
+  &:active {
+    color: var(--color-primary-dark);
+  }
+}
+
+// ============================================
+// Form Elements
+// ============================================
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+input,
+textarea,
+select {
+  outline: none;
+}
+
+// ============================================
+// Lists
+// ============================================
+
+ul,
+ol {
+  list-style: none;
+}
+
+// ============================================
+// Images & Media
+// ============================================
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// ============================================
+// Tables
+// ============================================
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th,
+td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+// ============================================
+// Layout Utilities
+// ============================================
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.flex {
+  display: flex;
+
+  &--center {
+    align-items: center;
+    justify-content: center;
+  }
+
+  &--between {
+    justify-content: space-between;
+  }
+
+  &--column {
+    flex-direction: column;
+  }
+
+  &--wrap {
+    flex-wrap: wrap;
+  }
+}
+
+.grid {
+  display: grid;
+}
+
+// ============================================
+// Text Utilities
+// ============================================
+
+.text {
+  &--primary {
+    color: var(--color-primary);
+  }
+
+  &--success {
+    color: var(--color-success);
+  }
+
+  &--warning {
+    color: var(--color-warning);
+  }
+
+  &--danger {
+    color: var(--color-danger);
+  }
+
+  &--info {
+    color: var(--color-info);
+  }
+
+  &--muted {
+    color: var(--color-text-secondary);
+  }
+
+  &--left {
+    text-align: left;
+  }
+
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  &--ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+// ============================================
+// Spacing Utilities
+// ============================================
+
+.m {
+  &t-0 { margin-top: 0; }
+  &t-sm { margin-top: var(--spacing-sm); }
+  &t-md { margin-top: var(--spacing-md); }
+  &t-lg { margin-top: var(--spacing-lg); }
+  &t-xl { margin-top: var(--spacing-xl); }
+
+  &b-0 { margin-bottom: 0; }
+  &b-sm { margin-bottom: var(--spacing-sm); }
+  &b-md { margin-bottom: var(--spacing-md); }
+  &b-lg { margin-bottom: var(--spacing-lg); }
+  &b-xl { margin-bottom: var(--spacing-xl); }
+
+  &l-0 { margin-left: 0; }
+  &l-sm { margin-left: var(--spacing-sm); }
+  &l-md { margin-left: var(--spacing-md); }
+  &l-lg { margin-left: var(--spacing-lg); }
+  &l-xl { margin-left: var(--spacing-xl); }
+
+  &r-0 { margin-right: 0; }
+  &r-sm { margin-right: var(--spacing-sm); }
+  &r-md { margin-right: var(--spacing-md); }
+  &r-lg { margin-right: var(--spacing-lg); }
+  &r-xl { margin-right: var(--spacing-xl); }
+}
+
+.p {
+  &t-0 { padding-top: 0; }
+  &t-sm { padding-top: var(--spacing-sm); }
+  &t-md { padding-top: var(--spacing-md); }
+  &t-lg { padding-top: var(--spacing-lg); }
+  &t-xl { padding-top: var(--spacing-xl); }
+
+  &b-0 { padding-bottom: 0; }
+  &b-sm { padding-bottom: var(--spacing-sm); }
+  &b-md { padding-bottom: var(--spacing-md); }
+  &b-lg { padding-bottom: var(--spacing-lg); }
+  &b-xl { padding-bottom: var(--spacing-xl); }
+
+  &l-0 { padding-left: 0; }
+  &l-sm { padding-left: var(--spacing-sm); }
+  &l-md { padding-left: var(--spacing-md); }
+  &l-lg { padding-left: var(--spacing-lg); }
+  &l-xl { padding-left: var(--spacing-xl); }
+
+  &r-0 { padding-right: 0; }
+  &r-sm { padding-right: var(--spacing-sm); }
+  &r-md { padding-right: var(--spacing-md); }
+  &r-lg { padding-right: var(--spacing-lg); }
+  &r-xl { padding-right: var(--spacing-xl); }
+}
+
+// ============================================
+// Display Utilities
+// ============================================
+
+.d {
+  &-none { display: none; }
+  &-block { display: block; }
+  &-inline { display: inline; }
+  &-inline-block { display: inline-block; }
+  &-flex { display: flex; }
+  &-inline-flex { display: inline-flex; }
+  &-grid { display: grid; }
+}
+
+// ============================================
+// Responsive Breakpoints
+// ============================================
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+}
+
+@media (max-width: 576px) {
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+  h3 { font-size: 1.125rem; }
+}
