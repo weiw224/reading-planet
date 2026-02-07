@@ -2,7 +2,7 @@
   <div class="article-list">
     <div class="page-header">
       <h2>文章管理</h2>
-      <el-button type="primary" @click="$router.push('/articles/create')">
+      <el-button type="primary" @click="goToCreate">
         <el-icon><Plus /></el-icon>
         创建文章
       </el-button>
@@ -55,7 +55,7 @@
         </el-table-column>
         <el-table-column label="操作" width="220" fixed="right">
           <template #default="{ row }">
-            <el-button size="small" @click="$router.push(`/articles/${row.id}/edit`)">
+            <el-button size="small" @click="goToEdit(row.id)">
               编辑
             </el-button>
             <el-button
@@ -93,9 +93,12 @@
 
 <script setup lang="ts">
 import { ref, reactive, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { Plus } from '@element-plus/icons-vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import { getArticleList, deleteArticle, publishArticle, Article } from '@/api/articles'
+
+const router = useRouter()
 
 const list = ref<Article[]>([])
 const loading = ref(false)
@@ -142,6 +145,9 @@ const loadData = async () => {
     })
     list.value = data.items
     pagination.total = data.total
+  } catch (error) {
+    ElMessage.error('加载数据失败，请稍后重试')
+    console.error('Failed to load articles:', error)
   } finally {
     loading.value = false
   }
@@ -150,21 +156,44 @@ const loadData = async () => {
 const resetFilters = () => {
   filters.status = ''
   filters.keyword = ''
+  pagination.page = 1
   loadData()
 }
 
 const handlePublish = async (row: Article) => {
-  await ElMessageBox.confirm('确定要发布这篇文章吗？', '提示')
-  await publishArticle(row.id)
-  ElMessage.success('发布成功')
-  loadData()
+  try {
+    await ElMessageBox.confirm('确定要发布这篇文章吗？', '提示')
+    await publishArticle(row.id)
+    ElMessage.success('发布成功')
+    loadData()
+  } catch (error) {
+    if (error !== 'cancel') {
+      ElMessage.error('发布失败，请稍后重试')
+      console.error('Failed to publish article:', error)
+    }
+  }
 }
 
 const handleDelete = async (row: Article) => {
-  await ElMessageBox.confirm('确定要删除这篇文章吗？删除后无法恢复！', '警告', { type: 'warning' })
-  await deleteArticle(row.id)
-  ElMessage.success('删除成功')
-  loadData()
+  try {
+    await ElMessageBox.confirm('确定要删除这篇文章吗？删除后无法恢复！', '警告', { type: 'warning' })
+    await deleteArticle(row.id)
+    ElMessage.success('删除成功')
+    loadData()
+  } catch (error) {
+    if (error !== 'cancel') {
+      ElMessage.error('删除失败，请稍后重试')
+      console.error('Failed to delete article:', error)
+    }
+  }
+}
+
+const goToCreate = () => {
+  router.push('/articles/create')
+}
+
+const goToEdit = (id: number) => {
+  router.push(`/articles/${id}/edit`)
 }
 
 onMounted(() => {
