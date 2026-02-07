@@ -12,10 +12,48 @@ interface AppState {
   loadingMessage?: string
 }
 
+function getThemeFromStorage(): Theme {
+  try {
+    const stored = localStorage.getItem(THEME_KEY)
+    if (stored === 'light' || stored === 'dark') {
+      return stored as Theme
+    }
+  } catch (error) {
+    console.warn('Failed to read theme from localStorage:', error)
+  }
+  return 'light'
+}
+
+function getSidebarFromStorage(): boolean {
+  try {
+    const stored = localStorage.getItem(SIDEBAR_KEY)
+    return stored === 'true'
+  } catch (error) {
+    console.warn('Failed to read sidebar state from localStorage:', error)
+    return false
+  }
+}
+
+function setThemeToStorage(theme: Theme): void {
+  try {
+    localStorage.setItem(THEME_KEY, theme)
+  } catch (error) {
+    console.warn('Failed to write theme to localStorage:', error)
+  }
+}
+
+function setSidebarToStorage(collapsed: boolean): void {
+  try {
+    localStorage.setItem(SIDEBAR_KEY, String(collapsed))
+  } catch (error) {
+    console.warn('Failed to write sidebar state to localStorage:', error)
+  }
+}
+
 export const useAppStore = defineStore('app', {
   state: (): AppState => ({
-    theme: (localStorage.getItem(THEME_KEY) as Theme) || 'light',
-    sidebarCollapsed: localStorage.getItem(SIDEBAR_KEY) === 'true',
+    theme: getThemeFromStorage(),
+    sidebarCollapsed: getSidebarFromStorage(),
     loading: false,
     loadingMessage: undefined,
   }),
@@ -27,22 +65,17 @@ export const useAppStore = defineStore('app', {
   actions: {
     toggleSidebar() {
       this.sidebarCollapsed = !this.sidebarCollapsed
-      localStorage.setItem(SIDEBAR_KEY, String(this.sidebarCollapsed))
+      setSidebarToStorage(this.sidebarCollapsed)
     },
 
     setSidebar(collapsed: boolean) {
       this.sidebarCollapsed = collapsed
-      localStorage.setItem(SIDEBAR_KEY, String(this.sidebarCollapsed))
+      setSidebarToStorage(this.sidebarCollapsed)
     },
 
     setTheme(theme: Theme) {
       this.theme = theme
-      localStorage.setItem(THEME_KEY, theme)
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
+      setThemeToStorage(theme)
     },
 
     toggleTheme() {
