@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "个人主页",
+  "navigationBarBackgroundColor": "#FFF8E7",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "radar-chart": "/components/radar-chart/radar-chart",
+    "badge-item": "/components/badge-item/badge-item"
+  }
+}

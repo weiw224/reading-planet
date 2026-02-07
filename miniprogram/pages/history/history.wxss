@@ -1,0 +1,183 @@
+/* 历史记录样式 */
+.page-history {
+  min-height: 100vh;
+  background: var(--bg-page);
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  padding-top: calc(20rpx + var(--status-bar-height, 44px));
+  background: #FFF8E7;
+}
+
+.nav-left {
+  width: 72rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-left image {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.nav-right {
+  width: 72rpx;
+}
+
+.main-content {
+  height: calc(100vh - var(--nav-height, 88px));
+  padding: 30rpx;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.history-item {
+  display: flex;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.item-left {
+  margin-right: 20rpx;
+}
+
+.cover {
+  width: 160rpx;
+  height: 120rpx;
+  border-radius: 12rpx;
+}
+
+.item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 12rpx;
+  display: block;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 12rpx;
+}
+
+.date {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.score {
+  font-size: 26rpx;
+  color: #F5A623;
+  font-weight: 600;
+}
+
+.tags {
+  display: flex;
+  gap: 8rpx;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 20rpx;
+  color: #666;
+  background: #F5F5F5;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20rpx;
+  min-width: 100rpx;
+}
+
+.accuracy {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #52C41A;
+}
+
+.accuracy-label {
+  font-size: 20rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.loading-more {
+  text-align: center;
+  padding: 30rpx;
+  color: #999;
+  font-size: 26rpx;
+}
+
+.no-more {
+  text-align: center;
+  padding: 30rpx;
+  color: #999;
+  font-size: 26rpx;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 0;
+}
+
+.empty-state image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 20rpx;
+  opacity: 0.5;
+}
+
+.empty-state text {
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 40rpx;
+}
+
+.btn-start {
+  width: 280rpx;
+  height: 80rpx;
+  background: #F5A623;
+  color: #fff;
+  border: none;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.btn-start::after {
+  border: none;
+}

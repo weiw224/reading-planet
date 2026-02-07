@@ -1,0 +1,125 @@
+<!-- 个人中心 - 参考原型: 个人主页_(能力与历史) -->
+<view class="page-profile">
+  <!-- 顶部导航 -->
+  <view class="nav-bar">
+    <view class="nav-left" bindtap="openSettings">
+      <image src="/images/icons/settings.png" mode="aspectFit" />
+    </view>
+    <text class="nav-title">个人主页</text>
+    <view class="nav-right" bindtap="showNotifications">
+      <image src="/images/icons/bell.png" mode="aspectFit" />
+    </view>
+  </view>
+
+  <scroll-view class="main-content" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 用户信息卡片 -->
+    <view class="user-card">
+      <view class="user-avatar-wrapper">
+        <image 
+          class="user-avatar" 
+          src="{{userInfo.avatar_url || '/images/default-avatar.png'}}" 
+          mode="aspectFill"
+        />
+        <view class="level-badge">Lv.{{userLevel}}</view>
+      </view>
+      
+      <text class="user-nickname">{{userInfo.nickname || '小书虫'}}</text>
+      <text class="user-title">称号：{{userTitle}}</text>
+      
+      <view class="streak-info">
+        <image src="/images/icons/calendar-check.png" mode="aspectFit" />
+        <text>已坚持阅读 {{stats.streakDays}} 天</text>
+      </view>
+      
+      <button class="btn-edit" bindtap="editProfile">编辑资料</button>
+    </view>
+
+    <!-- 我的勋章墙 -->
+    <view class="section badge-section">
+      <view class="section-header">
+        <text class="section-title">我的勋章墙</text>
+        <view class="view-all" bindtap="viewAllBadges">
+          <text>全部</text>
+          <image src="/images/icons/arrow-right.png" mode="aspectFit" />
+        </view>
+      </view>
+      
+      <view class="badge-grid">
+        <badge-item
+          wx:for="{{badges}}"
+          wx:key="id"
+          badge="{{item}}"
+          bind:tap="onBadgeTap"
+        />
+      </view>
+    </view>
+
+    <!-- 能力雷达图 -->
+    <view class="section ability-section">
+      <text class="section-title">能力雷达图</text>
+      <view class="radar-wrapper">
+        <radar-chart 
+          data="{{abilityData}}"
+          size="{{400}}"
+        />
+      </view>
+      
+      <button class="btn-weak-point" bindtap="goWeakPoint">
+        <image src="/images/icons/trend-up.png" mode="aspectFit" />
+        <text>去补弱项！</text>
+      </button>
+    </view>
+
+    <!-- 最近练习 -->
+    <view class="section history-section">
+      <view class="section-header">
+        <text class="section-title">最近练习</text>
+        <view class="view-all" bindtap="viewAllHistory">
+          <text>查看全部</text>
+          <image src="/images/icons/arrow-right.png" mode="aspectFit" />
+        </view>
+      </view>
+      
+      <view class="history-list">
+        <view 
+          class="history-item"
+          wx:for="{{recentHistory}}"
+          wx:key="id"
+          bindtap="viewHistoryDetail"
+          data-id="{{item.id}}"
+        >
+          <view class="history-date">{{item.date}}</view>
+          <view class="history-content">
+            <text class="history-title">《{{item.article_title}}》</text>
+            <view class="history-stats">
+              <text class="score">{{item.score}}分</text>
+              <text class="time">{{item.time_text}}</text>
+            </view>
+          </view>
+          <view class="history-icons">
+            <image 
+              src="/images/icons/book.png" 
+              mode="aspectFit"
+              class="icon-book"
+            />
+            <image 
+              wx:if="{{item.has_badge}}"
+              src="/images/icons/badge-small.png" 
+              mode="aspectFit"
+              class="icon-badge"
+            />
+          </view>
+        </view>
+      </view>
+      
+      <!-- 空状态 -->
+      <view class="empty-history" wx:if="{{recentHistory.length === 0}}">
+        <image src="/images/empty-history.png" mode="aspectFit" />
+        <text>还没有阅读记录，快去开始吧！</text>
+      </view>
+    </view>
+
+    <!-- 底部占位 -->
+    <view class="bottom-placeholder"></view>
+  </scroll-view>
+</view>

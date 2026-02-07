@@ -1,0 +1,51 @@
+<!-- 勋章墙页面 -->
+<view class="page-badges">
+  <view class="nav-bar">
+    <view class="nav-left" bindtap="goBack">
+      <image src="/images/icons/arrow-left.png" mode="aspectFit" />
+    </view>
+    <text class="nav-title">我的勋章</text>
+    <view class="nav-right"></view>
+  </view>
+
+  <scroll-view class="main-content" scroll-y>
+    <!-- 已获得勋章 -->
+    <view class="section">
+      <text class="section-title">已获得 ({{unlockedCount}})</text>
+      <view class="badge-grid">
+        <view 
+          class="badge-card unlocked"
+          wx:for="{{unlockedBadges}}"
+          wx:key="id"
+          bindtap="showBadgeDetail"
+          data-badge="{{item}}"
+        >
+          <image class="badge-icon" src="{{item.icon_url}}" mode="aspectFit" />
+          <text class="badge-name">{{item.name}}</text>
+          <text class="badge-status">已解锁</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 待解锁勋章 -->
+    <view class="section">
+      <text class="section-title">待解锁 ({{lockedCount}})</text>
+      <view class="badge-grid">
+        <view 
+          class="badge-card locked"
+          wx:for="{{lockedBadges}}"
+          wx:key="id"
+          bindtap="showLockCondition"
+          data-badge="{{item}}"
+        >
+          <view class="badge-icon-wrapper">
+            <image class="badge-icon" src="{{item.icon_url}}" mode="aspectFit" />
+            <image class="lock-icon" src="/images/icons/lock.png" mode="aspectFit" />
+          </view>
+          <text class="badge-name">{{item.name}}</text>
+          <text class="badge-condition">{{item.short_condition}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
