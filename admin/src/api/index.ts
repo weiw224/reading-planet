@@ -10,7 +10,7 @@ const SUCCESS_CODE = 0
 const UNAUTHORIZED_CODE = 401
 const DEFAULT_ERROR_MESSAGE = '请求失败'
 
-interface ApiResponse<T = any> {
+interface ApiResponse<T = unknown> {
   code: number
   message: string
   data: T
@@ -30,7 +30,7 @@ api.interceptors.request.use(
     const token = localStorage.getItem(TOKEN_KEY)
     if (token) {
       if (!config.headers) {
-        config.headers = {} as any
+        config.headers = {} as Record<string, string>
       }
       config.headers.Authorization = BEARER_PREFIX + token
     }
