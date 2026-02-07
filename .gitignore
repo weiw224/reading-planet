@@ -31,3 +31,5 @@ miniprogram/.miniprogram/
 
 .env.local
 .env.*.local
+
+.worktrees/
