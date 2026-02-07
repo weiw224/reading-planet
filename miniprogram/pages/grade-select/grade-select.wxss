@@ -1,0 +1,113 @@
+.page-grade-select {
+  min-height: 100vh;
+  background: var(--bg-page);
+  padding-bottom: 180rpx;
+}
+
+/* 顶部区域 */
+.header-section {
+  display: flex;
+  align-items: center;
+  padding: 40rpx 30rpx;
+  background: #fff;
+  margin-bottom: 30rpx;
+}
+
+.header-icon {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 24rpx;
+}
+
+.header-text .title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.header-text .subtitle {
+  display: block;
+  font-size: 26rpx;
+  color: #888;
+}
+
+/* 年级列表 */
+.grade-list {
+  padding: 0 30rpx;
+}
+
+.grade-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx 30rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  margin-bottom: 20rpx;
+  border: 4rpx solid transparent;
+  transition: all 0.2s ease;
+}
+
+.grade-item.selected {
+  border-color: #F5A623;
+  background: #FFF9EE;
+}
+
+.grade-info {
+  display: flex;
+  align-items: center;
+}
+
+.grade-icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 24rpx;
+}
+
+.grade-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.check-icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.check-icon image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 底部按钮 */
+.bottom-section {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20rpx 40rpx 40rpx;
+  background: #fff;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.btn-confirm {
+  width: 100%;
+  height: 96rpx;
+  background: #F5A623;
+  border-radius: 48rpx;
+  border: none;
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #fff;
+}
+
+.btn-confirm::after {
+  border: none;
+}
+
+.btn-confirm.disabled {
+  background: #ccc;
+}

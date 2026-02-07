@@ -1,0 +1,62 @@
+<!-- 登录页 - 参考原型: 微信登录界面 -->
+<view class="page-login">
+  <!-- 背景装饰 -->
+  <view class="bg-decoration"></view>
+  
+  <!-- 主内容区 -->
+  <view class="login-content">
+    <!-- 顶部帮助图标 -->
+    <view class="help-icon" bindtap="showHelp">
+      <image src="/images/icons/help.png" mode="aspectFit" />
+    </view>
+    
+    <!-- 吉祥物图片 - 考拉 -->
+    <view class="mascot-wrapper">
+      <image 
+        class="mascot-image" 
+        src="/images/mascots/koala.png" 
+        mode="aspectFit"
+      />
+    </view>
+    
+    <!-- 欢迎文案 -->
+    <view class="welcome-text">
+      <text class="title">欢迎来到阅读星球</text>
+      <text class="subtitle">开启你的奇幻阅读之旅</text>
+    </view>
+    
+    <!-- 登录按钮 -->
+    <view class="login-section">
+      <button 
+        class="btn-login" 
+        bindtap="handleLogin"
+        loading="{{loading}}"
+      >
+        <image 
+          class="wechat-icon" 
+          src="/images/icons/wechat.png" 
+          mode="aspectFit"
+          wx:if="{{!loading}}"
+        />
+        <text>微信一键登录</text>
+      </button>
+    </view>
+    
+    <!-- 用户协议 -->
+    <view class="agreement-section">
+      <checkbox-group bindchange="onAgreementChange">
+        <label class="agreement-label">
+          <checkbox 
+            value="agree" 
+            checked="{{agreed}}"
+            color="#F5A623"
+          />
+          <text class="agreement-text">我已阅读并同意</text>
+          <text class="agreement-link" bindtap="viewUserAgreement">用户协议</text>
+          <text class="agreement-text">和</text>
+          <text class="agreement-link" bindtap="viewPrivacyPolicy">隐私政策</text>
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+</view>
