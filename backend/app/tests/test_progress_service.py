@@ -772,3 +772,300 @@ async def test_get_history_empty(db_session):
 
     assert total == 0
     assert len(items) == 0
+
+
+@pytest.mark.asyncio
+async def test_submit_answer_invalid_progress(db_session):
+    """Should reject answer submission for invalid progress"""
+    user = User(openid="test_user")
+    db_session.add(user)
+    await db_session.commit()
+    await db_session.refresh(user)
+
+    article = Article(
+        title="测试文章",
+        content="内容",
+        word_count=100,
+        reading_time=1,
+        status=ArticleStatusEnum.PUBLISHED,
+        article_difficulty=DifficultyEnum.EASY
+    )
+    db_session.add(article)
+    await db_session.commit()
+    await db_session.refresh(article)
+
+    question = Question(
+        article_id=article.id,
+        type=QuestionTypeEnum.CHOICE,
+        difficulty=DifficultyEnum.EASY,
+        content="测试问题",
+        options='{"A": "A", "B": "B"}',
+        answer="A"
+    )
+    db_session.add(question)
+    await db_session.commit()
+
+    with pytest.raises(ValueError, match="进度记录不存在"):
+        await ProgressService.submit_answer(
+            db_session, 999, user.id, question.id, "A"
+        )
+
+
+@pytest.mark.asyncio
+async def test_submit_answer_completed_reading(db_session):
+    """Should reject answer submission for completed reading"""
+    user = User(openid="test_user")
+    db_session.add(user)
+    await db_session.commit()
+    await db_session.refresh(user)
+
+    article = Article(
+        title="测试文章",
+        content="内容",
+        word_count=100,
+        reading_time=1,
+        status=ArticleStatusEnum.PUBLISHED,
+        article_difficulty=DifficultyEnum.EASY
+    )
+    db_session.add(article)
+    await db_session.commit()
+    await db_session.refresh(article)
+
+    question = Question(
+        article_id=article.id,
+        type=QuestionTypeEnum.CHOICE,
+        difficulty=DifficultyEnum.EASY,
+        content="测试问题",
+        options='{"A": "A", "B": "B"}',
+        answer="A"
+    )
+    db_session.add(question)
+    await db_session.commit()
+
+    progress = UserProgress(
+        user_id=user.id,
+        article_id=article.id,
+        total_count=1,
+        completed_at=datetime.utcnow()
+    )
+    db_session.add(progress)
+    await db_session.commit()
+
+    with pytest.raises(ValueError, match="该阅读已完成，无法继续答题"):
+        await ProgressService.submit_answer(
+            db_session, progress.id, user.id, question.id, "A"
+        )
+
+
+@pytest.mark.asyncio
+async def test_submit_answer_wrong_article(db_session):
+    """Should reject answer for question from different article"""
+    user = User(openid="test_user")
+    db_session.add(user)
+    await db_session.commit()
+    await db_session.refresh(user)
+
+    article1 = Article(
+        title="文章1",
+        content="内容1",
+        word_count=100,
+        reading_time=1,
+        status=ArticleStatusEnum.PUBLISHED,
+        article_difficulty=DifficultyEnum.EASY
+    )
+    article2 = Article(
+        title="文章2",
+        content="内容2",
+        word_count=100,
+        reading_time=1,
+        status=ArticleStatusEnum.PUBLISHED,
+        article_difficulty=DifficultyEnum.EASY
+    )
+    db_session.add_all([article1, article2])
+    await db_session.commit()
+    await db_session.refresh(article1)
+    await db_session.refresh(article2)
+
+    question = Question(
+        article_id=article1.id,
+        type=QuestionTypeEnum.CHOICE,
+        difficulty=DifficultyEnum.EASY,
+        content="测试问题",
+        options='{"A": "A", "B": "B"}',
+        answer="A"
+    )
+    db_session.add(question)
+    await db_session.commit()
+
+    progress = UserProgress(
+        user_id=user.id,
+        article_id=article2.id,
+        total_count=1
+    )
+    db_session.add(progress)
+    await db_session.commit()
+
+    with pytest.raises(ValueError, match="题目不存在或不属于该文章"):
+        await ProgressService.submit_answer(
+            db_session, progress.id, user.id, question.id, "A"
+        )
+
+
+@pytest.mark.asyncio
+async def test_complete_reading_invalid_progress(db_session):
+    """Should reject completing reading for invalid progress"""
+    user = User(openid="test_user")
+    db_session.add(user)
+    await db_session.commit()
+
+    with pytest.raises(ValueError, match="进度记录不存在"):
+        await ProgressService.complete_reading(db_session, 999, user.id, 180)
+
+
+@pytest.mark.asyncio
+async def test_complete_reading_unauthorized_user(db_session):
+    """Should reject completing reading for different user"""
+    user1 = User(openid="user1")
+    user2 = User(openid="user2")
+    db_session.add_all([user1, user2])
+    await db_session.commit()
+    await db_session.refresh(user1)
+
+    article = Article(
+        title="测试文章",
+        content="内容",
+        word_count=100,
+        reading_time=1,
+        status=ArticleStatusEnum.PUBLISHED,
+        article_difficulty=DifficultyEnum.EASY
+    )
+    db_session.add(article)
+    await db_session.commit()
+    await db_session.refresh(article)
+
+    progress = UserProgress(
+        user_id=user1.id,
+        article_id=article.id,
+        total_count=1
+    )
+    db_session.add(progress)
+    await db_session.commit()
+
+    with pytest.raises(ValueError, match="进度记录不存在"):
+        await ProgressService.complete_reading(db_session, progress.id, user2.id, 180)
+
+
+@pytest.mark.asyncio
+async def test_get_progress_detail_unauthorized(db_session):
+    """Should reject getting progress detail for different user"""
+    user1 = User(openid="user1")
+    user2 = User(openid="user2")
+    db_session.add_all([user1, user2])
+    await db_session.commit()
+    await db_session.refresh(user1)
+
+    article = Article(
+        title="测试文章",
+        content="内容",
+        word_count=100,
+        reading_time=1,
+        status=ArticleStatusEnum.PUBLISHED,
+        article_difficulty=DifficultyEnum.EASY
+    )
+    db_session.add(article)
+    await db_session.commit()
+    await db_session.refresh(article)
+
+    progress = UserProgress(
+        user_id=user1.id,
+        article_id=article.id,
+        total_count=1
+    )
+    db_session.add(progress)
+    await db_session.commit()
+
+    result = await ProgressService.get_progress_detail(db_session, progress.id, user2.id)
+
+    assert result is None
+
+
+@pytest.mark.asyncio
+async def test_check_badges_total_readings(db_session):
+    """Should award total readings badge"""
+    user = User(openid="test_user", total_readings=10)
+    db_session.add(user)
+    await db_session.commit()
+
+    badge = Badge(
+        name="阅读达人",
+        description="完成10次阅读",
+        category=BadgeCategoryEnum.READING,
+        condition_type=BadgeConditionTypeEnum.TOTAL_READINGS,
+        condition_value=10
+    )
+    db_session.add(badge)
+    await db_session.commit()
+
+    new_badges = await ProgressService._check_badges(db_session, user)
+
+    assert len(new_badges) == 1
+    assert new_badges[0].name == "阅读达人"
+
+
+@pytest.mark.asyncio
+async def test_check_badges_total_readings_not_met(db_session):
+    """Should not award total readings badge when condition not met"""
+    user = User(openid="test_user", total_readings=5)
+    db_session.add(user)
+    await db_session.commit()
+
+    badge = Badge(
+        name="阅读达人",
+        description="完成10次阅读",
+        category=BadgeCategoryEnum.READING,
+        condition_type=BadgeConditionTypeEnum.TOTAL_READINGS,
+        condition_value=10
+    )
+    db_session.add(badge)
+    await db_session.commit()
+
+    new_badges = await ProgressService._check_badges(db_session, user)
+
+    assert len(new_badges) == 0
+
+
+@pytest.mark.asyncio
+async def test_start_reading_with_multiple_questions(db_session):
+    """Should count all questions when starting reading"""
+    user = User(openid="test_user")
+    db_session.add(user)
+    await db_session.commit()
+    await db_session.refresh(user)
+
+    article = Article(
+        title="测试文章",
+        content="内容",
+        word_count=100,
+        reading_time=1,
+        status=ArticleStatusEnum.PUBLISHED,
+        article_difficulty=DifficultyEnum.EASY
+    )
+    db_session.add(article)
+    await db_session.commit()
+    await db_session.refresh(article)
+
+    for i in range(5):
+        question = Question(
+            article_id=article.id,
+            type=QuestionTypeEnum.CHOICE,
+            difficulty=DifficultyEnum.EASY,
+            content=f"测试问题{i}",
+            options='{"A": "A", "B": "B"}',
+            answer="A"
+        )
+        db_session.add(question)
+    await db_session.commit()
+
+    result = await ProgressService.start_reading(db_session, user.id, article.id)
+
+    assert result.question_count == 5
