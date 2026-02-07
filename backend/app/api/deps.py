@@ -50,7 +50,7 @@ async def get_current_user(
 async def get_admin_user(
     authorization: Optional[str] = Header(None),
     db: AsyncSession = Depends(get_db)
-) -> User:
+) -> dict:
     """获取管理员用户（用于后台接口）"""
     if not authorization:
         raise AuthenticationError("请先登录")
@@ -70,6 +70,9 @@ async def get_admin_user(
     user_id = payload.get("sub")
     if not user_id:
         raise AuthenticationError("Token 中缺少用户信息")
+    
+    if user_id == "admin":
+        return payload
     
     try:
         result = await db.execute(select(User).where(User.id == int(user_id)))

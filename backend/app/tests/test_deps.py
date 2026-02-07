@@ -220,6 +220,25 @@ async def test_get_admin_user_not_found():
 
 
 @pytest.mark.asyncio
+async def test_get_admin_user_with_admin_token():
+    """测试使用admin token时直接返回payload，不查询数据库"""
+    from app.utils.security import create_access_token
+    
+    with patch('app.api.deps.get_db') as mock_get_db:
+        mock_session = AsyncMock(spec=AsyncSession)
+        mock_get_db.return_value = mock_session
+        
+        token = create_access_token({"sub": "admin", "role": "admin", "username": "admin"})
+        
+        result = await get_admin_user(authorization=f"Bearer {token}", db=mock_session)
+        
+        assert result["sub"] == "admin"
+        assert result["role"] == "admin"
+        assert result["username"] == "admin"
+        assert not mock_session.execute.called, "Should not query database for admin token"
+
+
+@pytest.mark.asyncio
 async def test_get_admin_user_success():
     """测试成功获取管理员用户"""
     from app.utils.security import create_access_token
@@ -248,6 +267,7 @@ async def test_get_admin_user_success():
         assert isinstance(result, User)
         assert result.id == 123
         assert result.nickname == "管理员"
+        assert result.openid == "admin_openid"
 
 
 @pytest.mark.asyncio

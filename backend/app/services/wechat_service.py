@@ -15,8 +15,8 @@ class WechatService:
             "grant_type": "authorization_code"
         }
         
-        async with httpx.AsyncClient() as client:
-            response = await client.get(cls.AUTH_URL, params=params)
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.get(cls.AUTH_URL, params=params, timeout=10.0)
             data = response.json()
         
         if "openid" in data:
